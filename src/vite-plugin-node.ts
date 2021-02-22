@@ -1,13 +1,8 @@
 import swc from 'rollup-plugin-swc';
 import { Plugin } from 'vite';
+import { PLUGIN_NAME, VitePluginNodeConfig, WS_PORT } from '.';
 
-export const PLUGIN_NAME = 'vite-plugin-node'
 
-export interface VitePluginNodeConfig {
-  appPath: string;
-  framework: 'express' | 'nest';
-  tsCompiler: 'esbuild' | 'swc'
-}
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
   const config = {
@@ -23,7 +18,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
       ...swc({
         jsc: {
           loose: true,
-          target: 'es2020',
+          target: 'es2019',
           parser: {
             syntax: 'typescript',
             decorators: true,
@@ -43,8 +38,12 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
     config: () => ({
       server: {
         middlewareMode: true,
+        hmr: {
+          port: WS_PORT
+        }
       },
-      plugins
+      plugins,
+      VitePluginNodeConfig: config
     }),
   };
 }
