@@ -1,3 +1,4 @@
+import { exit } from "process";
 import { Plugin, ViteDevServer } from "vite";
 import { IServer, PLUGIN_NAME, SupportedServer, ViteConfig, VitePluginNodeConfig } from "..";
 import { ExpressServer } from "./express-server";
@@ -10,6 +11,11 @@ export const SUPPORTED_SERVERS: Record<SupportedServer, IServer> = {
 
 export const GetPluginConfig = (server: ViteDevServer): VitePluginNodeConfig => {
   const plugin = server.config.plugins.find((p) => p.name === PLUGIN_NAME) as Plugin;
+
+  if (!plugin) {
+    console.error('Please setup VitePluginNode in your vite.config.js first');
+    exit(1);
+  }
 
   return (plugin.config!({}, { command: 'serve', mode: '' }) as ViteConfig).VitePluginNodeConfig
 }

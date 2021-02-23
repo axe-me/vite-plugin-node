@@ -2,9 +2,12 @@ import swc from 'rollup-plugin-swc';
 import { Plugin } from 'vite';
 import { PLUGIN_NAME, VitePluginNodeConfig, WS_PORT } from '.';
 
+export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
+  const config: VitePluginNodeConfig = {
+    tsCompiler: 'esbuild',
+    ...cfg
+  };
 
-
-export function VitePluginNode(config: VitePluginNodeConfig): Plugin {
   const plugins: Plugin[] = [];
 
   if (config.tsCompiler === 'swc') {

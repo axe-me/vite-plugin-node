@@ -7,7 +7,8 @@ export const ExpressServer: IServer<Application> = {
   _config: undefined,
   async create (server, config) {
     this._config = config
-    this._app = await server.ssrLoadModule(this._config.appPath) as Application;
+    const { createViteNodeApp } = await server.ssrLoadModule(this._config.appPath);
+    this._app = createViteNodeApp as Application;
     this._app.use(server.middlewares);
   },
   async start () {

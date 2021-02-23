@@ -26,7 +26,7 @@ export interface VitePluginNodeConfig {
   appPath: string;
   port: number;
   server: ServerConfig;
-  tsCompiler: SupportedTSCompiler;
+  tsCompiler?: SupportedTSCompiler;
   createCustomServer?: () => IServer;
 }
 

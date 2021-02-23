@@ -6,8 +6,8 @@ export const NestServer: IServer<INestApplication> = {
   _server: undefined,
   _config: undefined,
   async create (server, config) {
-    const { createApp } = await server.ssrLoadModule(config.appPath);
-    this._app = await createApp as INestApplication;
+    const { createViteNodeApp } = await server.ssrLoadModule(config.appPath);
+    this._app = await createViteNodeApp as INestApplication;
     this._app.use(server.middlewares);
   },
   async start () {

@@ -8,6 +8,7 @@ module.exports = {
   },
   rules: {
     'no-debugger': ['error'],
+    'node/shebang': 'off',
     'node/no-missing-import': [
       'error',
       {
