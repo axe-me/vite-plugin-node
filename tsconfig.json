@@ -1,0 +1,19 @@
+{
+  "include": ["./src"],
+  "exclude": ["**/__tests__"],
+  "rootDir": "src",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "strict": true,
+    "declaration": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    // compile away optional-chaining-operator
+    // node support table: https://node.green/#ES2020-features-optional-chaining-operator-----
+    "target": "ES2018",
+    "outDir": "./dist",
+    "module": "commonjs",
+    "lib": ["ESNext"],
+    "sourceMap": true
+  }
+}

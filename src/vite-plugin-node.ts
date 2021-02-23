@@ -4,14 +4,8 @@ import { PLUGIN_NAME, VitePluginNodeConfig, WS_PORT } from '.';
 
 
 
-export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
-  const config = {
-    framework: 'express',
-    tsCompiler: 'esbuild',
-    ...cfg
-  };
-
-  const plugins = [];
+export function VitePluginNode(config: VitePluginNodeConfig): Plugin {
+  const plugins: Plugin[] = [];
 
   if (config.tsCompiler === 'swc') {
     plugins.push({
@@ -30,6 +24,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
         },
       }),
       enforce: 'pre',
+      apply: 'serve'
     })
   }
 

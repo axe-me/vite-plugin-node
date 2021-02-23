@@ -2,9 +2,9 @@ import { Application } from 'express';
 import { IServer } from "..";
 
 export const ExpressServer: IServer<Application> = {
-  _app: null,
-  _server: null,
-  _config: null,
+  _app: undefined,
+  _server: undefined,
+  _config: undefined,
   async create (server, config) {
     this._config = config
     this._app = await server.ssrLoadModule(this._config.appPath) as Application;
@@ -12,13 +12,13 @@ export const ExpressServer: IServer<Application> = {
   },
   async start () {
     this._server = await new Promise((resolve, reject) => {
-      const server = this._app.listen(this._config.port, () => {
+      const server = this._app?.listen(this._config?.port, () => {
         resolve(server)
       });
     })
   },
   async close () {
-    await this._server.close();
+    await this._server?.close();
   },
   async restart () {
     if (this._app) {
