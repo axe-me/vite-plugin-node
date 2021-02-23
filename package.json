@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vite plugin to enable your node server HMR",
   "main": "dist/index.js",
   "bin": {
@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "@swc/core": "^1.2.47",
+    "chalk": "^4.1.0",
     "rollup-plugin-swc": "^0.1.4",
     "vite": "^2.0.1",
     "websocket": "^1.0.33"
@@ -23,7 +24,6 @@
     "@types/websocket": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
-    "chalk": "^4.1.0",
     "eslint": "^7.20.0",
     "eslint-plugin-node": "^11.1.0",
     "express": "^4.17.1",
