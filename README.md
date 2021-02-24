@@ -49,13 +49,45 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 
     ```  
 
+3. Update your server entry to export your app named `createViteNodeApp`
+    ### ExpressJs
+    ```ts
+    const app = express();
 
-3. Add a npm script to run the dev server:
+    // your beautiful code...
+
+    if (process.env.NODE_ENV === 'production') {
+      app.listen(3000)
+    }
+
+    export const createViteNodeApp = app;
+    ```
+
+    ### NestJs
+    ```ts
+    import { NestFactory } from '@nestjs/core';
+    import { AppModule } from './app.module';
+
+    if (process.env.NODE_ENV === 'production') {
+      async function bootstrap() {
+        const app = await NestFactory.create(AppModule);
+        await app.listen(3000);
+      }
+
+      bootstrap();
+    }
+
+    export const createViteNodeApp = NestFactory.create(AppModule);
+
+    ```
+4. Add a npm script to run the dev server:
     ```json
     "scripts": {
       "dev": "vite-node"
     },
     ```  
+
+5. Run the script! `npm run dev`
 
 ## To-Do
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:  
