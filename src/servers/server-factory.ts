@@ -82,6 +82,7 @@ const createWebsoketClient = (server: ViteDevServer, nodeServer: IServer, config
             await nodeServer.close();
             exit(1);
           } else { // handle module updates
+            await nodeServer.create(server, config); // reload app
             await nodeServer.restart();
             logger.info(chalk.yellow`Node Server Reloaded \n`, { timestamp: true });
           }

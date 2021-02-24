@@ -20,6 +20,6 @@ export const NestServer: IServer<INestApplication> = {
     if (this._app) {
       await this.close();
     }
-    this.start()
+    await this.start()
   },
 }

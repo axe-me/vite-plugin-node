@@ -25,6 +25,6 @@ export const ExpressServer: IServer<Application> = {
     if (this._app) {
       await this.close();
     }
-    this.start()
+    await this.start()
   },
 }
