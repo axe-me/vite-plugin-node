@@ -77,7 +77,7 @@ const createWebsoketClient = (server: ViteDevServer, nodeServer: IServer, config
       connection.on('message', async (message) => {
         if (message.type === 'utf8') {
           const payload = JSON.parse(message.utf8Data as string) as HMRPayload;
-          debugServer(chalk.dim`[ws] recived: ${payload}`);
+          debugServer(chalk.dim`[ws] recived: ${message.utf8Data}`);
 
           if (payload.type === 'connected') {
             logger.clearScreen('info');

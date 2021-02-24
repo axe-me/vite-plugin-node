@@ -14,7 +14,7 @@ export const ExpressServer: IServer<Application> = {
     const { createViteNodeApp } = await server.ssrLoadModule(this._config.appPath);
     this._app = createViteNodeApp as Application;
     this._app.use(server.middlewares);
-    debugExpress(chalk.dim`app created: \n${this._app}`);
+    debugExpress(chalk.dim`app created`);
   },
   async start () {
     this._server = await new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export const ExpressServer: IServer<Application> = {
         resolve(server)
       });
     })
-    debugExpress(chalk.dim`server started`);
+    debugExpress(chalk.dim`server started at port ${this._config?.port}`);
   },
   async close () {
     await this._server?.close();
