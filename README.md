@@ -1,5 +1,7 @@
 # Vite Plugin Node
 -----
+> Note: this plugin is still under active development
+
 A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server.
 
 ## Why?
@@ -91,10 +93,11 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 
 ## To-Do
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:  
-- [ ] Read swc config file
-- [ ] Support static files serving
-- [ ] Figure out how to do things like run typeorm migrations
-- [ ] Unit tests
+  - [ ] Read swc config file
+  - [ ] Support static files serving
+  - [ ] Figure out how to do things like run typeorm migrations
+  - [ ] Test with large node project
+  - [ ] Unit tests
 
 ## Bugs
 Create an issue if you found any bugs to helpe me to improve this project

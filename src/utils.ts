@@ -1,0 +1,11 @@
+/**
+ * modified from vitejs source code, just to make the console output looks vite-like
+ */
+import debug from 'debug'
+
+export function createDebugger(ns: string) {
+  const log = debug(ns)
+  return (msg: string, ...args: any[]) => {
+    log(msg, ...args)
+  }
+}

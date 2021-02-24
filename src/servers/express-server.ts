@@ -1,5 +1,9 @@
+import chalk from 'chalk';
 import { Application } from 'express';
 import { IServer } from "..";
+import { createDebugger } from '../utils';
+
+export const debugExpress = createDebugger('vite:node-plugin:express')
 
 export const ExpressServer: IServer<Application> = {
   _app: undefined,
@@ -10,6 +14,7 @@ export const ExpressServer: IServer<Application> = {
     const { createViteNodeApp } = await server.ssrLoadModule(this._config.appPath);
     this._app = createViteNodeApp as Application;
     this._app.use(server.middlewares);
+    debugExpress(chalk.dim`app created: \n${this._app}`);
   },
   async start () {
     this._server = await new Promise((resolve, reject) => {
@@ -17,11 +22,14 @@ export const ExpressServer: IServer<Application> = {
         resolve(server)
       });
     })
+    debugExpress(chalk.dim`server started`);
   },
   async close () {
     await this._server?.close();
+    debugExpress(chalk.dim`server closed`);
   },
   async restart () {
+    debugExpress(chalk.dim`server restarting`);
     if (this._app) {
       await this.close();
     }
