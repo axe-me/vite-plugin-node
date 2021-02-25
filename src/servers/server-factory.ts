@@ -59,49 +59,47 @@ const createWebsoketClient = (server: ViteDevServer, nodeServer: IServer, config
   const logger = server.config.logger;
 
   wsc.on('connectFailed', async (error) => {
-      logger.info(chalk.red`Fail to connect to Vite WebSocket, Error: ${error.toString()}\n`);
-      await nodeServer.close();
+    logger.info(chalk.red`Fail to connect to Vite WebSocket, Error: ${error.toString()}\n`);
+    await nodeServer.close();
   });
 
   wsc.on('connect', (connection) => {
-      logger.info('Connected to Vite WebSocket');
+    debugServer(chalk.dim`Connected to Vite WebSocket`);
 
-      connection.on('error', async (error) => {
-          logger.info(chalk.red`Vite WebSocket Connection Error: ${error.toString()}`);
+    connection.on('error', async (error) => {
+      logger.info(chalk.red`Vite WebSocket Connection Error: ${error.toString()}`);
+      await nodeServer.close();
+    });
+    connection.on('close', async () => {
+      logger.info(chalk.yellow`Vite WebSocket Connection Closed`);
+      await nodeServer.close();
+    });
+    connection.on('message', async (message) => {
+      if (message.type === 'utf8') {
+        const payload = JSON.parse(message.utf8Data as string) as HMRPayload;
+        debugServer(chalk.dim`[ws] recived: ${message.utf8Data}`);
+
+        if (payload.type === 'connected') {
+          logger.clearScreen('info');
+          debugServer(chalk.green`Connected to Vite Dev Server`, { timestamp: true });
+
+          await nodeServer.start();
+          logger.info(chalk.green`${config.server} server started at ` + chalk.blueBright.underline`http://localhost:${config.port}`, { timestamp: true });
+        } else if (payload.type === 'error') {
+          logger.error(chalk.red`Something went wrong with Vite HMR, shutting down...`, { timestamp: true });
           await nodeServer.close();
-      });
-      connection.on('close', async () => {
-          logger.info(chalk.yellow`Vite WebSocket Connection Closed`);
-          await nodeServer.close();
-      });
-      connection.on('message', async (message) => {
-        if (message.type === 'utf8') {
-          const payload = JSON.parse(message.utf8Data as string) as HMRPayload;
-          debugServer(chalk.dim`[ws] recived: ${message.utf8Data}`);
-
-          if (payload.type === 'connected') {
-            logger.clearScreen('info');
-            logger.info(chalk.green`Connected to Vite Dev Server`, { timestamp: true });
-
-            await nodeServer.start();
-            debugServer(chalk.dim`[ws] server started`);
-
-            logger.info(chalk.green`Node Server Started`, { timestamp: true });
-          } else if (payload.type === 'error') {
-            logger.error(chalk.red`Something went wrong with HMR, shutting down...`, { timestamp: true });
-            await nodeServer.close();
-            debugServer(chalk.dim`[ws] server closed`);
-            exit(1);
-          } else { // handle module updates
-            debugServer(chalk.dim`[ws] on updated, reloading app`);
-            await nodeServer.create(server, config); // reload app
-            debugServer(chalk.dim`[ws] on updated, app reloaded, retarting server`);
-            await nodeServer.restart();
-            debugServer(chalk.dim`[ws] on updated, server retarted`);
-            logger.info(chalk.yellow`Node Server Reloaded`, { timestamp: true });
-          }
+          debugServer(chalk.dim`[ws] server closed`);
+          exit(1);
+        } else { // handle module updates
+          debugServer(chalk.dim`[ws] on updated, reloading app`);
+          await nodeServer.create(server, config); // reload app
+          debugServer(chalk.dim`[ws] on updated, app reloaded, retarting server`);
+          await nodeServer.restart();
+          debugServer(chalk.dim`[ws] on updated, server retarted`);
+          logger.info(chalk.yellow`Node Server Reloaded`, { timestamp: true });
         }
-      });
+      }
+    });
   });
 
   wsc.connect(`ws://localhost:${WS_PORT}`);

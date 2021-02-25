@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import { Application } from 'express';
+import { Server } from 'http';
 import { IServer } from "..";
 import { createDebugger } from '../utils';
 
@@ -25,12 +26,12 @@ export const ExpressServer: IServer<Application> = {
     debugExpress(chalk.dim`server started at port ${this._config?.port}`);
   },
   async close () {
-    await this._server?.close();
+    await (this._server as Server)?.close();
     debugExpress(chalk.dim`server closed`);
   },
   async restart () {
     debugExpress(chalk.dim`server restarting`);
-    if (this._app) {
+    if (this._server) {
       await this.close();
     }
     await this.start()

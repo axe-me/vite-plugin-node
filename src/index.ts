@@ -4,7 +4,7 @@ export { VitePluginNode } from "./vite-plugin-node";
 
 export declare interface IServer<APP = {}, SERVER = http.Server> {
   _app?: APP;
-  _server?: SERVER;
+  _server?: SERVER | APP;
   _config?: VitePluginNodeConfig;
   create: (server: ViteDevServer, config: VitePluginNodeConfig) => Promise<void> | void;
   start: () => Promise<void> | void;

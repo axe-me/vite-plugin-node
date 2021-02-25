@@ -12,6 +12,7 @@ export const NestServer: IServer<INestApplication> = {
   async create (server, config) {
     this._config = config
     const { createViteNodeApp } = await server.ssrLoadModule(config.appPath);
+    this._server = this._app; // use internal variable to cache previous app
     this._app = await createViteNodeApp as INestApplication;
     this._app.use(server.middlewares);
     debugNest(chalk.dim`app created`);
@@ -21,12 +22,12 @@ export const NestServer: IServer<INestApplication> = {
     debugNest(chalk.dim`server started at port` + chalk.green`${this._config?.port}`);
   },
   async close () {
-    await this._app?.close();
+    await this._server?.close();
     debugNest(chalk.dim`server closed`);
   },
   async restart () {
     debugNest(chalk.dim`server restarting`);
-    if (this._app) {
+    if (this._server) {
       await this.close();
     }
     await this.start()
