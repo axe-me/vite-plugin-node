@@ -21,7 +21,7 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
     const config = {
       // ...
       plugins: [
-        VitePluginNode({
+        ...VitePluginNode({
           // the node framework yout are using, 
           // currently this plugin support 'express', 'nest' and 'custom',
           // more framework support incoming!

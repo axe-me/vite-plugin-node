@@ -1,20 +1,34 @@
-import swc from 'rollup-plugin-swc';
 import { Plugin } from 'vite';
 import { PLUGIN_NAME, VitePluginNodeConfig, WS_PORT } from '.';
+import { RollupPluginSwc } from "./rollup-plugin-swc";
 
-export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
+export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const config: VitePluginNodeConfig = {
     tsCompiler: 'esbuild',
     ...cfg
   };
 
-  const plugins: Plugin[] = [];
+  const plugins: Plugin[] = [
+    {
+      name: PLUGIN_NAME,
+      config: () => ({
+        server: {
+          middlewareMode: true,
+          hmr: {
+            port: WS_PORT
+          }
+        },
+        esbuild: config.tsCompiler === 'esbuild' ? {} : false,
+        VitePluginNodeConfig: config,
+      }),
+      apply: 'serve'
+    }
+  ];
 
   if (config.tsCompiler === 'swc') {
     plugins.push({
-      ...swc({
+      ...RollupPluginSwc({
         jsc: {
-          loose: true,
           target: 'es2019',
           parser: {
             syntax: 'typescript',
@@ -25,23 +39,9 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin {
             decoratorMetadata: true,
           },
         },
-      }),
-      enforce: 'pre',
-      apply: 'serve'
+      })
     })
   }
 
-  return {
-    name: PLUGIN_NAME,
-    config: () => ({
-      server: {
-        middlewareMode: true,
-        hmr: {
-          port: WS_PORT
-        }
-      },
-      plugins,
-      VitePluginNodeConfig: config
-    }),
-  };
+  return plugins;
 }

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Vite plugin to enable your node server HMR",
   "main": "dist/index.js",
   "bin": {
@@ -11,10 +11,11 @@
     "bin"
   ],
   "dependencies": {
-    "@swc/core": "^1.2.47",
+    "@rollup/pluginutils": "^4.1.0",
+    "@swc/core": "^1.2.49",
+    "@types/estree": "^0.0.46",
     "chalk": "^4.1.0",
     "debug": "^4.3.1",
-    "rollup-plugin-swc": "^0.1.4",
     "vite": "^2.0.1",
     "websocket": "^1.0.33"
   },
