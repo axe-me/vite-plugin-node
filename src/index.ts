@@ -1,5 +1,6 @@
 import * as http from 'http';
 import { UserConfig, ViteDevServer } from "vite";
+export { RollupPluginSwc } from "./rollup-plugin-swc";
 export { VitePluginNode } from "./vite-plugin-node";
 
 export declare interface IServer<APP = {}, SERVER = http.Server> {
