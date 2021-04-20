@@ -1,4 +1,4 @@
-import { INestApplication } from '@nestjs/common';
+import type { INestApplication } from '@nestjs/common';
 import chalk from 'chalk';
 import { IServer } from "..";
 import { createDebugger } from '../utils';
