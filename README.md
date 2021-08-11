@@ -9,17 +9,6 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 - Support Express, Fastify, Koa and Nest out of box
 - Support Custom Server
 - You can choose to use `esbuild` or `swc` to compile your typescript files
-
-## Why?
----
- While frontend development tooling is evolving rapidly in recent years, backend DX is still like in stone age. No hot module replacement; Typescript recompiling slow as funk; Lack of plugin system etc. Thanks to Vitejs created by Evan You (A.K.A creator of vuejs; my biggest idol developer), makes all those dreams for backend development come true!
-
-## How?
-----
-Vite by design have a middlewareMode which allow us to use vite programmatically inside other module. It's originally made for SSR web app originally. So that for each request, vite can load the renderer to render the latest changes you made to your app. This plugin leverage this feature to load and execute your server app entry.  
-  
-You may ask isn't super slow since it re-compile/reload entire app from the entry? The answer is NO, because vite is smart. Vite has a builtin module graph as a cache layer, the graph is built up at the first time your app load. After that, when you update one file, vite will only invalidate itself and its parents modules, so that for next request, only those invalidated module need to be re-compiled which is super fast thanks to esbuild and swc.
-
 ## Get started
 ---
 1. Install vite and this plugin with your favourite package manager, here use npm as example:
@@ -100,6 +89,21 @@ You may ask isn't super slow since it re-compile/reload entire app from the entr
     export const viteNodeApp = app;
     ```
 
+    ### Fastify
+    ```ts
+    import fastify from 'fastify';
+
+    const app = fastify();
+
+    // your beautiful code...
+
+    if (process.env.NODE_ENV === 'production') {
+        app.listen(3000)
+    }
+
+    export const viteNodeApp = app;
+    ```
+
     ### NestJs
     ```ts
     import { NestFactory } from '@nestjs/core';
@@ -168,12 +172,20 @@ If your favourite framework not support yet, you can either create an issue to r
 ## Examples
 See the examples folder. 
 
+## Why?
+---
+ While frontend development tooling is evolving rapidly in recent years, backend DX is still like in stone age. No hot module replacement; Typescript recompiling slow as funk; Lack of plugin system etc. Thanks to Vitejs created by Evan You (A.K.A creator of vuejs; my biggest idol developer), makes all those dreams for backend development come true!
+
+## How?
+----
+Vite by design have a middlewareMode which allow us to use vite programmatically inside other module. It's originally made for SSR web app originally. So that for each request, vite can load the renderer to render the latest changes you made to your app. This plugin leverage this feature to load and execute your server app entry.  
+  
+You may ask isn't super slow since it re-compile/reload entire app from the entry? The answer is NO, because vite is smart. Vite has a builtin module graph as a cache layer, the graph is built up at the first time your app load. After that, when you update one file, vite will only invalidate itself and its parents modules, so that for next request, only those invalidated module need to be re-compiled which is super fast thanks to esbuild and swc.
+
 ## To-Do
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:  
   - [ ] Build the app into a bundle for production.
-  - [ ] Support Fastify framework
-  - [ ] Read swc config file
-  - [ ] Test with large node project
+  - [ ] Test with large node project, I need y'all helps on this!
   - [ ] Unit tests
 
 ## Bugs
