@@ -5,6 +5,7 @@ import { RollupPluginSwc } from "./rollup-plugin-swc";
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const config: VitePluginNodeConfig = {
     tsCompiler: 'esbuild',
+    host: 'localhost',
     ...cfg
   };
 

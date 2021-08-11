@@ -1,0 +1,13 @@
+{
+  "name": "koa-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite-node"
+  },
+  "dependencies": {
+    "koa": "^2.13.1",
+    "vite-plugin-node": "^0.0.8"
+  }
+}

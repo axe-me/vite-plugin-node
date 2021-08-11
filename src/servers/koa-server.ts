@@ -1,17 +1,17 @@
-import { Application } from 'express';
+import Koa from 'koa';
 import { IServer } from "..";
 import http from "http"
+import c2k from 'koa-connect';
 import chalk from "chalk"
 
-export const ExpressServer: IServer<Application> = {
+export const KoaServer: IServer<Koa> = {
   async start (server, config) {
     const logger = server.config.logger;
-  
     const httpServer = http.createServer(async (req, res) => {
-      const { viteNodeApp } = await server.ssrLoadModule(config.appPath) as { viteNodeApp: Application };
-      viteNodeApp.use(server.middlewares);
+      const { viteNodeApp } = await server.ssrLoadModule(config.appPath) as { viteNodeApp: Koa };
+      viteNodeApp.use(c2k(server.middlewares));
 
-      viteNodeApp(req, res)
+      viteNodeApp.callback()(req, res);
     });
 
     httpServer.listen(config.port, config.host, () => {

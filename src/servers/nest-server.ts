@@ -1,35 +1,26 @@
 import type { INestApplication } from '@nestjs/common';
-import chalk from 'chalk';
 import { IServer } from "..";
 import { createDebugger } from '../utils';
+import http from 'http';
+import chalk from "chalk"
 
 export const debugNest = createDebugger('vite:node-plugin:nest')
 
 export const NestServer: IServer<INestApplication> = {
-  _app: undefined,
-  _server: undefined,
-  _config: undefined,
-  async create (server, config) {
-    this._config = config
-    const { createViteNodeApp } = await server.ssrLoadModule(config.appPath);
-    this._server = this._app; // use internal variable to cache previous app
-    this._app = await createViteNodeApp as INestApplication;
-    this._app.use(server.middlewares);
-    debugNest(chalk.dim`app created`);
-  },
-  async start () {
-    await this._app?.listen(this._config?.port as number);
-    debugNest(chalk.dim`server started at port` + chalk.green`${this._config?.port}`);
-  },
-  async close () {
-    await this._server?.close();
-    debugNest(chalk.dim`server closed`);
-  },
-  async restart () {
-    debugNest(chalk.dim`server restarting`);
-    if (this._server) {
-      await this.close();
-    }
-    await this.start()
+  async start (server, config) {
+    const logger = server.config.logger;
+    const httpServer = http.createServer(async (req, res) => {
+      const { viteNodeApp } = await server.ssrLoadModule(config.appPath);
+      const nestApp = await viteNodeApp as INestApplication;
+      nestApp.use(server.middlewares);
+      await nestApp.init();
+      const app = nestApp.getHttpAdapter().getInstance();
+
+      app(req, res)
+    });
+
+    httpServer.listen(config.port, config.host, () => {
+      logger.info(chalk.greenBright`Server started on http://${config.host}:${config.port}`);
+    });
   },
 }
