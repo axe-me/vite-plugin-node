@@ -1,3 +1,7 @@
+# 0.0.10
+--------
+add fastify support!
+
 # 0.0.9
 --------
 I re-implemented how this plugin works internally. Previously, this plugin relay on vite dev server HMR signals to restart the server, which is too slow. In this new version, the app is loaded on each request and the http server is always running.

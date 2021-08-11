@@ -6,6 +6,7 @@ import { createDebugger } from '../utils';
 import { ExpressServer } from "./express-server";
 import { NestServer } from "./nest-server";
 import { KoaServer } from "./koa-server";
+import { FastifyServer } from "./fastify-server";
 
 export const debugServer = createDebugger('vite:node-plugin:server')
 
@@ -13,6 +14,7 @@ export const SUPPORTED_SERVERS: Record<SupportedServer, IServer> = {
   'express': ExpressServer,
   'nest': NestServer,
   'koa': KoaServer,
+  'fastify': FastifyServer
 }
 
 export const GetPluginConfig = (server: ViteDevServer): VitePluginNodeConfig => {

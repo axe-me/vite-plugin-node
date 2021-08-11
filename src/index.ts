@@ -10,7 +10,7 @@ export const WS_PORT = 24678;
 
 export const PLUGIN_NAME = 'vite-plugin-node'
 
-export declare type SupportedServer = 'express' | 'nest' | 'koa'
+export declare type SupportedServer = 'express' | 'nest' | 'koa' | 'fastify'
 export declare type CustomServer = 'custom'
 export declare type ServerConfig = SupportedServer | CustomServer
 

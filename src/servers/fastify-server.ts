@@ -1,18 +1,17 @@
-import { Application } from 'express';
 import { IServer } from "..";
-import http from "http"
+import { FastifyInstance } from "fastify"
 import chalk from "chalk"
+import http from 'http'
 
-export const ExpressServer: IServer<Application> = {
+export const FastifyServer: IServer<FastifyInstance> = {
   async start (server, config) {
     const logger = server.config.logger;
   
     const httpServer = http.createServer(async (req, res) => {
-      const { viteNodeApp } = await server.ssrLoadModule(config.appPath) as { viteNodeApp: Application };
+      const { viteNodeApp } = await server.ssrLoadModule(config.appPath) as { viteNodeApp: FastifyInstance };
+      await viteNodeApp.ready();
 
-      viteNodeApp.use(server.middlewares);
-
-      viteNodeApp(req, res)
+      viteNodeApp.server.emit('request', req, res);
     });
 
     httpServer.listen(config.port, config.host, () => {
