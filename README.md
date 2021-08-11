@@ -1,8 +1,14 @@
 # Vite Plugin Node
 -----
-> Note: this plugin is still under active development
 
 A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server.
+
+## Features
+- All the perks from Vite plus:
+- Node server HMR! (hot module replacement)
+- Support Express, Fastify, Koa and Nest out of box
+- Support Custom Server
+- You can choose to use `esbuild` or `swc` to compile your typescript files
 
 ## Why?
 ---
@@ -158,7 +164,7 @@ If your favourite framework not support yet, you can either create an issue to r
 
     export default config;
 
-    ```  
+```
 ## Examples
 See the examples folder. 
 
