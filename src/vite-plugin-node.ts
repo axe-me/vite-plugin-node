@@ -4,9 +4,15 @@ import { RollupPluginSwc } from "./rollup-plugin-swc";
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const config: VitePluginNodeConfig = {
-    tsCompiler: 'esbuild',
-    host: 'localhost',
-    ...cfg
+    appPath: cfg.appPath,
+    handler: cfg.handler,
+    tsCompiler: cfg.tsCompiler ?? 'esbuild',
+    exportName: cfg.exportName ?? 'viteNodeApp',
+    server: {
+      port: 3000,
+      host: 'localhost',
+      ...cfg.server
+    },
   };
 
   const plugins: Plugin[] = [

@@ -3,7 +3,7 @@ import fastify from 'fastify';
 const app = fastify();
 
 app.get('/', (req, reply) => {
-  reply.send('change me to see updates!');
+  reply.send('change me to see updates');
 });
 
 app.get('/ping', (req, reply) => {

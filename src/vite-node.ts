@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { createServer } from 'vite';
-import { debugServer, MakeServer } from './servers/server-factory';
+import { debugServer, startServer } from './server';
 
 async function bootstrap() {
   // vite server config is managed by the plugin
@@ -9,7 +9,7 @@ async function bootstrap() {
   logger.clearScreen('info');
   debugServer(chalk.dim`Vite Dev Server Created`);
 
-  await MakeServer(viteServer);
+  await startServer(viteServer);
 }
 
 bootstrap();

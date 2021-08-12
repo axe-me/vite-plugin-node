@@ -1,3 +1,9 @@
+# 0.0.11
+--------
+- code refactor for framework adapters. move out the http server from the adapter. 
+- now support to customize the export name of your app
+**Breaking Changes**
+plugin config updated. Please take a look and update your config.
 # 0.0.10
 --------
 add fastify support!

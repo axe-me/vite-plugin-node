@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "koa": "^2.13.1",
-    "vite-plugin-node": "^0.0.8"
+    "vite-plugin-node": "^0.0.11"
   }
 }

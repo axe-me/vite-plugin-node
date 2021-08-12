@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Vite plugin to enable your node server HMR",
   "main": "dist/index.js",
   "engines": {
@@ -18,7 +18,6 @@
     "@swc/core": "^1.2.76",
     "chalk": "^4.1.0",
     "debug": "^4.3.1",
-    "koa-connect": "^2.1.0",
     "vite": "^2.4.4"
   },
   "devDependencies": {

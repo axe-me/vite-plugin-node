@@ -15,49 +15,36 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
     ```bash
     $ npm install vite vite-plugin-node -D
     ```
-2. Create a `vite.config.js` file in your project root to config vite to actually use this plugin:
-    ```js
+2. Create a `vite.config.ts` file in your project root to config vite to actually use this plugin:
+    ```ts
+    import { defineConfig } from 'vite';
     import { VitePluginNode } from 'vite-plugin-node';
-    /**
-     * @type {import('vite').UserConfig}
-    */
-    const config = {
-      // ...
+
+    export default defineConfig({
       plugins: [
         ...VitePluginNode({
           // the node framework yout are using, 
-          // currently this plugin support 'express', 'nest' and 'custom',
-          // more framework support incoming!
-          // when set this to 'custom', you have to the createCustomServer option // to tell the plugin how to create/start/... your node server
-          server: 'express', 
+          // currently this plugin support 'express', 'nest', 'koa' and 'fastify',
+          // you can also pass a function if you are using other frameworks, see Custom Handler section
+          handler: 'express', 
 
           // tell the plugin where is your project entry
           appPath: './app.ts',
 
-          // the port you want the server to run on
-          port: 3000,
+          // Optional, the name of named export of you app from the appPath file
+          exportName: 'viteNodeApp',
 
-          // Optional, default 'localhost' 
-          // the host you want the server to run on, default 
-          host: 'localhost',
+          // Optional, options pass to server.listen function
+          server: { port: 3000, host: 'localhost' }
 
           // Optional, the TypeScript compiler you want to use
           // by default this plugin is using vite default ts compiler which is esbuild
           // 'swc' compiler is supported to use as well for frameworks
           // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
           tsCompiler: 'esbuild',
-
-          // Required field when set server option to 'custom'
-          // For examples, check out './src/servers' folder
-          createCustomServer: () => ({
-            // your implementation...
-          })
         })
       ]
     }
-
-    export default config;
-
     ```  
 
 3. Update your server entry to export your app named `viteNodeApp`
@@ -129,44 +116,24 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 
 5. Run the script! `npm run dev`
 
-## Custom server
-If your favourite framework not support yet, you can either create an issue to request it or use the `createCustomServer` option to tell the plugin how to start it. You can take a look how the supported frameworks implement from the `./src/servers` folder. One example:
-```js
-    import { VitePluginNode } from 'vite-plugin-node';
-    /**
-     * @type {import('vite').UserConfig}
-    */
-    const config = {
-      // ...
-      plugins: [
-        ...VitePluginNode({
-          server: 'custom', 
-          appPath: './app.ts',
-          port: 3000,
-          createCustomServer: () => ({
-            async start (server, config) {
-              // we want to load the app on each request, so here we need a http server to
-              // pass down the req to your app
-              const httpServer = http.createServer(async (req, res) => {
-                // use the ssrLoadModule method from Vite dev server to load the app
-                const { viteNodeApp } = await server.ssrLoadModule(config.appPath);
-                // optionally you can bind the Connect middlewares to your app 
-                viteNodeApp.use(server.middlewares);
-                // pass the node req and res to your app to handle
-                viteNodeApp(req, res)
-              });
+## Custom Handler
+If your favourite framework not supported yet, you can either create an issue to request it or use the `handler` option to tell the plugin how to pass down the request to your app. You can take a look how the supported frameworks implement from the `./src/server` folder.  
+Example:
+```ts
+import { defineConfig } from 'vite';
+import { VitePluginNode } from 'vite-plugin-node';
 
-              // start the http server
-              httpServer.listen(config.port, config.host, () => {
-                console.log(`Server started on ${config.host}:${config.port}`);
-              });
-            }
-          })
-        })
-      ]
-    }
+export default defineConfig({
+  plugins: [
+    ...VitePluginNode({
+      handler: function(app, req, res) {
+        app(res, res)
+      },
+      appPath: './app.ts'
+    })
+  ]
+})
 
-    export default config;
 
 ```
 ## Examples

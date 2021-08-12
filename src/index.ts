@@ -1,28 +1,26 @@
-import { UserConfig, ViteDevServer } from "vite";
+import { ListenOptions } from "net";
+import { UserConfig } from "vite";
+import http from "http"
+
 export { RollupPluginSwc } from "./rollup-plugin-swc";
 export { VitePluginNode } from "./vite-plugin-node";
-
-export declare interface IServer<APP = {}> {
-  start: (server: ViteDevServer, config: VitePluginNodeConfig) => Promise<void> | void;
-}
 
 export const WS_PORT = 24678;
 
 export const PLUGIN_NAME = 'vite-plugin-node'
 
-export declare type SupportedServer = 'express' | 'nest' | 'koa' | 'fastify'
-export declare type CustomServer = 'custom'
-export declare type ServerConfig = SupportedServer | CustomServer
+export declare type SupportedFrameworks = 'express' | 'nest' | 'koa' | 'fastify'
+export declare type RequestHandler<App = {}> = (app: App, req: http.IncomingMessage, res: http.ServerResponse) => void | Promise<void>
+export declare type RequestHandlerOption = SupportedFrameworks | RequestHandler
 
 export declare type SupportedTSCompiler = 'esbuild' | 'swc'
 
 export interface VitePluginNodeConfig {
   appPath: string;
-  port: number;
-  host?: string;
-  server: ServerConfig;
+  handler: RequestHandlerOption;
+  exportName?: string;
+  server?: ListenOptions;
   tsCompiler?: SupportedTSCompiler;
-  createCustomServer?: () => IServer;
 }
 
 export declare interface ViteConfig extends UserConfig {
