@@ -1,3 +1,6 @@
+# 0.0.12
+--------
+Support async app
 # 0.0.11
 --------
 - code refactor for framework adapters. move out the http server from the adapter. 

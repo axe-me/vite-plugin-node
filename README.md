@@ -90,7 +90,19 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 
     export const viteNodeApp = app;
     ```
+    if the app created by an async factory function you can just export the promise.
+    ```ts
+    import fastify from 'fastify';
 
+    const app = async (options) => {
+      const app = fastify(options);
+      // app logics...
+      return app
+    }
+
+    // note here we need to run the function to get the promise.
+    export const viteNodeApp = app(options);
+    ```
     ### NestJs
     ```ts
     import { NestFactory } from '@nestjs/core';
@@ -105,7 +117,7 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
       bootstrap();
     }
 
-    export const viteNodeApp = NestFactory.create(AppModule);
+    export const viteNodeApp = NestFactory.create(AppModule); // this returns a Promise, which is ok, this plugin can handle it
     ```
 4. Add a npm script to run the dev server:
     ```json

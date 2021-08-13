@@ -89,7 +89,7 @@
   resolved "https://registry.yarnpkg.com/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.2.76.tgz#7c4ae7689dd8414aa65827686ebc78e0c0c130e4"
   integrity sha512-CvgWITouMnWSA/yiP4yEbXlTt9qoI0DvWz2riuW3vbQWGqsz0NcvXqsWzcrqvOG5+y62ZVUKW4sukBu0kOjNEw==
 
-"@swc/core@^1.2.54":
+"@swc/core@^1.2.76":
   version "1.2.76"
   resolved "https://registry.yarnpkg.com/@swc/core/-/core-1.2.76.tgz#86aa88bf174936cfe6c8961cfe0b9edcf92ef518"
   integrity sha512-oS4HMvHPYRD8i4pegxjET+3OTKJRd1CixulqoeNKi1pxW0bZ0mqeGXgLJJcAR0vtHRyF4Kv4yLh6qHhxfiIixQ==
@@ -341,11 +341,6 @@ json-schema-traverse@^0.4.1:
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
   integrity sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==
 
-koa-connect@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/koa-connect/-/koa-connect-2.1.0.tgz#16bce0a917c4cb24233aaac83fbc5b83804b4a1c"
-  integrity sha512-O9pcFafHk0oQsBevlbTBlB9co+2RUQJ4zCzu3qJPmGlGoeEZkne+7gWDkecqDPSbCtED6LmhlQladxs6NjOnMQ==
-
 light-my-request@^4.2.0:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/light-my-request/-/light-my-request-4.4.1.tgz#bfa2220316eef4f6465bf2f0667780da6b7f6a71"
@@ -555,16 +550,15 @@ util-deprecate@^1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-vite-plugin-node@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.11.tgz#a49ed6a025c11cf9264be8de63a49d2662d5b0a4"
-  integrity sha512-oFA7PKQXEzngUQZkeBp7vKvD3iIxd74QbcGqd3mhWAYZnnQ6vcgy80khaJDn+qIx6I0n7SB76hl5K3v83b2Kwg==
+vite-plugin-node@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.12.tgz#e52140cf37037cb53ca28fa7e0be30d85d0fd8a6"
+  integrity sha512-sWEEZ4kNjJ7T6N3G5ULJIZ0LXNYp0qiwremZtFZZHYJ2Z1cCmgqCF0grnw7tKfTBmWwfIv13uoOZa9JHDbTiRg==
   dependencies:
     "@rollup/pluginutils" "^4.1.0"
-    "@swc/core" "^1.2.54"
+    "@swc/core" "^1.2.76"
     chalk "^4.1.0"
     debug "^4.3.1"
-    koa-connect "^2.1.0"
     vite "^2.4.4"
 
 vite@^2.4.4:

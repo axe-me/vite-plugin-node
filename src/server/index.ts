@@ -54,8 +54,16 @@ export const startServer = async (server: ViteDevServer): Promise<void> => {
   }
 
   const httpServer = http.createServer(async (req, res) => {
-    const module = await server.ssrLoadModule(config.appPath);
-    await requestHandler(module[config.exportName!], req, res);
+    const appModule = await server.ssrLoadModule(config.appPath);
+    let app = appModule[config.exportName!];
+    if (!app) {
+      console.error(`Failed to find a named export ${config.exportName} from ${config.appPath}`);
+      process.exit(1)
+    } else {
+      // some app may be created with a function returning a promise
+      app = await app
+      await requestHandler(app, req, res);
+    }
   });
 
   httpServer.listen(config.server, () => {
