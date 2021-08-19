@@ -4,5 +4,6 @@ import { FastifyInstance } from "fastify"
 export const FastifyHandler: RequestHandler<FastifyInstance> = async (app, req, res) => {
   await app.ready();
 
-  app.server.emit('request', req, res);
+  // @ts-ignore wait this PR https://github.com/fastify/fastify/pull/3270
+  app.routing(req, res);
 }

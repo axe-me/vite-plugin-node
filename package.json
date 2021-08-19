@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "Vite plugin to enable your node server HMR",
   "main": "dist/index.js",
   "engines": {

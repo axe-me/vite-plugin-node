@@ -550,9 +550,9 @@ util-deprecate@^1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-vite-plugin-node@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.12.tgz#e52140cf37037cb53ca28fa7e0be30d85d0fd8a6"
+vite-plugin-node@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.13.tgz#e52140cf37037cb53ca28fa7e0be30d85d0fd8a6"
   integrity sha512-sWEEZ4kNjJ7T6N3G5ULJIZ0LXNYp0qiwremZtFZZHYJ2Z1cCmgqCF0grnw7tKfTBmWwfIv13uoOZa9JHDbTiRg==
   dependencies:
     "@rollup/pluginutils" "^4.1.0"

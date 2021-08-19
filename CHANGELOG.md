@@ -1,3 +1,7 @@
+# 0.0.13
+--------
+fastify: use fatify.routing to handle incoming request
+
 # 0.0.12
 --------
 Support async app
