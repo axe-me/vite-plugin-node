@@ -1,12 +1,17 @@
-<div style="display:flex;justify-content:center;align-items:center;">
+<p align="center">
   <img src="./node-vite.png" width="200px">
-</div>
+</p>
+<br/>
+<p align="center">
+  <a href="https://www.npmjs.com/package/vite-plugin-node"><img src="https://img.shields.io/npm/v/vite-plugin-node.svg" alt="npm package"></a>
+  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite-plugin-node.svg" alt="node compatibility"></a>
+</p>
+<br/>
 
 
 # Vite Plugin Node
------
 
-A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server.
+> A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server.
 
 ## Features
 - All the perks from Vite plus:
