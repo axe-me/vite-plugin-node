@@ -1,7 +1,7 @@
 import type { INestApplication } from '@nestjs/common';
-import { RequestHandler } from "..";
+import { RequestAdapter } from "..";
 
-export const NestHandler: RequestHandler<INestApplication> = async (app, req, res) => {
+export const NestHandler: RequestAdapter<INestApplication> = async (app, req, res) => {
   await app.init();
   const instance = app.getHttpAdapter().getInstance();
 

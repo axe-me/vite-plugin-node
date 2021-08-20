@@ -7,13 +7,13 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 - All the perks from Vite plus:
 - Node server HMR! (hot module replacement)
 - Support Express, Fastify, Koa and Nest out of box
-- Support Custom Server
+- Support Custom Request Adapter
 - You can choose to use `esbuild` or `swc` to compile your typescript files
 ## Get started
 ---
-1. Install vite and this plugin with your favourite package manager, here use npm as example:
+1. Install vite and this plugin with your favorite package manager, here use npm as example:
     ```bash
-    $ npm install vite vite-plugin-node -D
+    npm install vite vite-plugin-node -D
     ```
 2. Create a `vite.config.ts` file in your project root to config vite to actually use this plugin:
     ```ts
@@ -21,23 +21,26 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
     import { VitePluginNode } from 'vite-plugin-node';
 
     export default defineConfig({
+      // ...vite configures
+      server: { // vite server configs, for details see [vite doc](https://vitejs.dev/config/#server-host)
+        port: 3000
+      },
       plugins: [
         ...VitePluginNode({
-          // the node framework yout are using, 
-          // currently this plugin support 'express', 'nest', 'koa' and 'fastify',
-          // you can also pass a function if you are using other frameworks, see Custom Handler section
-          handler: 'express', 
+          // Nodejs native Request adapter
+          // currently this plugin support 'express', 'nest', 'koa' and 'fastify' out of box,
+          // you can also pass a function if you are using other frameworks, see Custom Adapter section
+          adapter: 'express', 
 
           // tell the plugin where is your project entry
           appPath: './app.ts',
 
-          // Optional, the name of named export of you app from the appPath file
+          // Optional, default: 'viteNodeApp' 
+          // the name of named export of you app from the appPath file
           exportName: 'viteNodeApp',
 
-          // Optional, options pass to server.listen function
-          server: { port: 3000, host: 'localhost' }
-
-          // Optional, the TypeScript compiler you want to use
+          // Optional, default: 'esbuild'
+          // The TypeScript compiler you want to use
           // by default this plugin is using vite default ts compiler which is esbuild
           // 'swc' compiler is supported to use as well for frameworks
           // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
@@ -47,7 +50,7 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
     }
     ```  
 
-3. Update your server entry to export your app named `viteNodeApp`
+3. Update your server entry to export your app named `viteNodeApp` or the name you configured.
     ### ExpressJs
     ```ts
     const app = express();
@@ -122,14 +125,14 @@ A [vite](https://vitejs.dev/) plugin to allow you to use vite as node dev server
 4. Add a npm script to run the dev server:
     ```json
     "scripts": {
-      "dev": "vite-node"
+      "dev": "vite"
     },
     ```  
 
 5. Run the script! `npm run dev`
 
-## Custom Handler
-If your favourite framework not supported yet, you can either create an issue to request it or use the `handler` option to tell the plugin how to pass down the request to your app. You can take a look how the supported frameworks implement from the `./src/server` folder.  
+## Custom Adapter
+If your favorite framework not supported yet, you can either create an issue to request it or use the `adapter` option to tell the plugin how to pass down the request to your app. You can take a look how the supported frameworks implementations from the `./src/server` folder.  
 Example:
 ```ts
 import { defineConfig } from 'vite';
@@ -138,7 +141,7 @@ import { VitePluginNode } from 'vite-plugin-node';
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      handler: function(app, req, res) {
+      adapter: function(app, req, res) {
         app(res, res)
       },
       appPath: './app.ts'
@@ -165,6 +168,7 @@ You may ask isn't super slow since it re-compile/reload entire app from the entr
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:  
   - [ ] Build the app into a bundle for production.
   - [ ] Test with large node project, I need y'all helps on this!
+  - [ ] make SWC compiler configurable
   - [ ] Unit tests
 
 ## Bugs

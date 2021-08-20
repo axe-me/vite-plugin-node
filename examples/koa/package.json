@@ -4,10 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "vite-node"
+    "dev": "vite"
   },
   "dependencies": {
-    "koa": "^2.13.1",
-    "vite-plugin-node": "^0.0.13"
+    "koa": "^2.13.1"
+  },
+  "devDependencies": {
+    "vite": "^2.5.0",
+    "vite-plugin-node": "^0.0.14"
   }
 }

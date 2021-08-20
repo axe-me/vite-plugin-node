@@ -4,11 +4,8 @@ import { VitePluginNode } from 'vite-plugin-node';
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      handler: 'fastify',
-      appPath: './app.ts',
-      server: {
-        port: 8888,
-      }
+      adapter: 'fastify',
+      appPath: './app.ts'
     })
   ]
 })

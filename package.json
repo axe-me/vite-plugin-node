@@ -1,24 +1,22 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Vite plugin to enable your node server HMR",
   "main": "dist/index.js",
   "engines": {
     "node": ">=14.0.0"
   },
-  "bin": {
-    "vite-node": "bin/vite-node.js"
-  },
   "files": [
-    "dist",
-    "bin"
+    "dist"
   ],
   "dependencies": {
     "@rollup/pluginutils": "^4.1.0",
     "@swc/core": "^1.2.76",
     "chalk": "^4.1.0",
-    "debug": "^4.3.1",
-    "vite": "^2.4.4"
+    "debug": "^4.3.1"
+  },
+  "peerDependencies": {
+    "vite": "^2.5.0"
   },
   "devDependencies": {
     "@nestjs/common": "^8.0.6",
@@ -30,7 +28,6 @@
     "@types/rx": "^4.1.2",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
-    "apollo-server-express": "^3.1.2",
     "eslint": "^7.20.0",
     "eslint-plugin-node": "^11.1.0",
     "express": "^4.17.1",
@@ -40,7 +37,8 @@
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.7",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "vite": "^2.5.0"
   },
   "scripts": {
     "build-dist": "tsc",

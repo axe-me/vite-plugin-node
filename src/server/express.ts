@@ -1,6 +1,6 @@
 import { Application } from 'express';
-import { RequestHandler } from "..";
+import { RequestAdapter } from "..";
 
-export const ExpressHandler: RequestHandler<Application> = (app, req, res) => {
+export const ExpressHandler: RequestAdapter<Application> = (app, req, res) => {
   app(req, res)
 }

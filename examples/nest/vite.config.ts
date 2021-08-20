@@ -4,7 +4,7 @@ import { VitePluginNode } from 'vite-plugin-node';
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      handler: 'nest',
+      adapter: 'nest',
       appPath: './src/main.ts',
       tsCompiler: 'swc'
     })
