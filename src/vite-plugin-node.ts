@@ -1,18 +1,14 @@
 import { Plugin } from 'vite';
-import { PLUGIN_NAME, VitePluginNodeConfig, WS_PORT } from '.';
+import { PLUGIN_NAME, VitePluginNodeConfig } from '.';
 import { RollupPluginSwc } from "./rollup-plugin-swc";
+import { createMiddleware } from './server';
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const config: VitePluginNodeConfig = {
     appPath: cfg.appPath,
-    handler: cfg.handler,
+    adapter: cfg.adapter,
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
-    exportName: cfg.exportName ?? 'viteNodeApp',
-    server: {
-      port: 3000,
-      host: 'localhost',
-      ...cfg.server
-    },
+    exportName: cfg.exportName ?? 'viteNodeApp'
   };
 
   const plugins: Plugin[] = [
@@ -20,14 +16,14 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
       name: PLUGIN_NAME,
       config: () => ({
         server: {
-          middlewareMode: true,
-          hmr: {
-            port: WS_PORT
-          }
+          hmr: false
         },
         esbuild: config.tsCompiler === 'esbuild' ? {} : false,
         VitePluginNodeConfig: config,
       }),
+      configureServer: (server) => {
+        server.middlewares.use(createMiddleware(server))
+      },
       apply: 'serve'
     }
   ];

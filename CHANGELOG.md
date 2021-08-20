@@ -1,3 +1,10 @@
+# 0.0.14
+--------
+Start from this patch, this plugin will use the vite http server instead of create its own.  
+
+**Breaking Changes!**
+- config option `handler` renamed to `adapter`
+- removed `server` config options, now you can just use vite server options, see [vite doc](https://vitejs.dev/config/#server-host)
 # 0.0.13
 --------
 fastify: use fatify.routing to handle incoming request

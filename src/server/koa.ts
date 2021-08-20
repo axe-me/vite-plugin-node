@@ -1,6 +1,6 @@
 import Koa from 'koa';
-import { RequestHandler } from "..";
+import { RequestAdapter } from "..";
 
-export const KoaHandler: RequestHandler<Koa> = (app, req, res) => {
+export const KoaHandler: RequestAdapter<Koa> = (app, req, res) => {
   app.callback()(req, res);
 }
