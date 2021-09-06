@@ -57,7 +57,7 @@
           tsCompiler: 'esbuild',
         })
       ]
-    }
+    })
     ```  
 
 3. Update your server entry to export your app named `viteNodeApp` or the name you configured.
