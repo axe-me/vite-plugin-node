@@ -1,21 +1,21 @@
-import chalk from "chalk";
-import http from "http";
-import { exit } from "process";
-import { Connect, Plugin, ViteDevServer } from "vite";
+import chalk from 'chalk';
+import http from 'http';
+import { exit } from 'process';
+import { Connect, Plugin, ViteDevServer } from 'vite';
 import {
   PLUGIN_NAME,
   RequestAdapter,
   RequestAdapterOption,
   ViteConfig,
   VitePluginNodeConfig,
-} from "..";
-import { createDebugger } from "../utils";
-import { ExpressHandler } from "./express";
-import { FastifyHandler } from "./fastify";
-import { KoaHandler } from "./koa";
-import { NestHandler } from "./nest";
+} from '..';
+import { createDebugger } from '../utils';
+import { ExpressHandler } from './express';
+import { FastifyHandler } from './fastify';
+import { KoaHandler } from './koa';
+import { NestHandler } from './nest';
 
-export const debugServer = createDebugger("vite:node-plugin:server");
+export const debugServer = createDebugger('vite:node-plugin:server');
 
 export const SUPPORTED_FRAMEWORKS = {
   express: ExpressHandler,
@@ -32,18 +32,18 @@ export const getPluginConfig = (
   ) as Plugin;
 
   if (!plugin) {
-    console.error("Please setup VitePluginNode in your vite.config.js first");
+    console.error('Please setup VitePluginNode in your vite.config.js first');
     exit(1);
   }
 
-  return (plugin.config!({}, { command: "serve", mode: "" }) as ViteConfig)
+  return (plugin.config!({}, { command: 'serve', mode: '' }) as ViteConfig)
     .VitePluginNodeConfig;
 };
 
 const getRequestHandler = (
   handler: RequestAdapterOption
 ): RequestAdapter | undefined => {
-  if (typeof handler === "function") {
+  if (typeof handler === 'function') {
     debugServer(chalk.dim`server config set to custom`);
     return handler;
   }
@@ -59,7 +59,7 @@ export const createMiddleware = (
   const requestHandler = getRequestHandler(config.adapter);
 
   if (!requestHandler) {
-    console.error("Failed to find a request handler");
+    console.error('Failed to find a request handler');
     process.exit(1);
   }
 

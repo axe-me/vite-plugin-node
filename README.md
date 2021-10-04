@@ -31,8 +31,8 @@
 2. Create a `vite.config.ts` file in your project root to config vite to actually use this plugin:
 
    ```ts
-   import { defineConfig } from "vite";
-   import { VitePluginNode } from "vite-plugin-node";
+   import { defineConfig } from 'vite';
+   import { VitePluginNode } from 'vite-plugin-node';
 
    export default defineConfig({
      // ...vite configures
@@ -45,21 +45,21 @@
          // Nodejs native Request adapter
          // currently this plugin support 'express', 'nest', 'koa' and 'fastify' out of box,
          // you can also pass a function if you are using other frameworks, see Custom Adapter section
-         adapter: "express",
+         adapter: 'express',
 
          // tell the plugin where is your project entry
-         appPath: "./app.ts",
+         appPath: './app.ts',
 
          // Optional, default: 'viteNodeApp'
          // the name of named export of you app from the appPath file
-         exportName: "viteNodeApp",
+         exportName: 'viteNodeApp',
 
          // Optional, default: 'esbuild'
          // The TypeScript compiler you want to use
          // by default this plugin is using vite default ts compiler which is esbuild
          // 'swc' compiler is supported to use as well for frameworks
          // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
-         tsCompiler: "esbuild",
+         tsCompiler: 'esbuild',
        }),
      ],
    });
@@ -74,7 +74,7 @@
 
    // your beautiful code...
 
-   if (process.env.NODE_ENV === "production") {
+   if (process.env.NODE_ENV === 'production') {
      app.listen(3000);
    }
 
@@ -84,13 +84,13 @@
    ### KoaJs
 
    ```ts
-   import Koa from "koa";
+   import Koa from 'koa';
 
    const app = new Koa();
 
    // your beautiful code...
 
-   if (process.env.NODE_ENV === "production") {
+   if (process.env.NODE_ENV === 'production') {
      app.listen(3000);
    }
 
@@ -100,13 +100,13 @@
    ### Fastify
 
    ```ts
-   import fastify from "fastify";
+   import fastify from 'fastify';
 
    const app = fastify();
 
    // your beautiful code...
 
-   if (process.env.NODE_ENV === "production") {
+   if (process.env.NODE_ENV === 'production') {
      app.listen(3000);
    }
 
@@ -116,7 +116,7 @@
    if the app created by an async factory function you can just export the promise.
 
    ```ts
-   import fastify from "fastify";
+   import fastify from 'fastify';
 
    const app = async (options) => {
      const app = fastify(options);
@@ -131,10 +131,10 @@
    ### NestJs
 
    ```ts
-   import { NestFactory } from "@nestjs/core";
-   import { AppModule } from "./app.module";
+   import { NestFactory } from '@nestjs/core';
+   import { AppModule } from './app.module';
 
-   if (process.env.NODE_ENV === "production") {
+   if (process.env.NODE_ENV === 'production') {
      async function bootstrap() {
        const app = await NestFactory.create(AppModule);
        await app.listen(3000);
@@ -162,8 +162,8 @@ If your favorite framework not supported yet, you can either create an issue to 
 Example:
 
 ```ts
-import { defineConfig } from "vite";
-import { VitePluginNode } from "vite-plugin-node";
+import { defineConfig } from 'vite';
+import { VitePluginNode } from 'vite-plugin-node';
 
 export default defineConfig({
   plugins: [
@@ -171,7 +171,7 @@ export default defineConfig({
       adapter: function (app, req, res) {
         app(res, res);
       },
-      appPath: "./app.ts",
+      appPath: './app.ts',
     }),
   ],
 });

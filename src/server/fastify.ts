@@ -1,5 +1,5 @@
-import { FastifyInstance } from "fastify";
-import { RequestAdapter } from "..";
+import { FastifyInstance } from 'fastify';
+import { RequestAdapter } from '..';
 
 export const FastifyHandler: RequestAdapter<FastifyInstance> = async (
   app,

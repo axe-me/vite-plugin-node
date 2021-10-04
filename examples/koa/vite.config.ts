@@ -1,11 +1,11 @@
-import { defineConfig } from "vite";
-import { VitePluginNode } from "vite-plugin-node";
+import { defineConfig } from 'vite';
+import { VitePluginNode } from 'vite-plugin-node';
 
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      adapter: "koa",
-      appPath: "./app.ts",
+      adapter: 'koa',
+      appPath: './app.ts',
     }),
   ],
 });

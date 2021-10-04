@@ -1,5 +1,5 @@
-import type { INestApplication } from "@nestjs/common";
-import { RequestAdapter } from "..";
+import type { INestApplication } from '@nestjs/common';
+import { RequestAdapter } from '..';
 
 export const NestHandler: RequestAdapter<INestApplication> = async (
   app,

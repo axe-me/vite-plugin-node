@@ -1,12 +1,12 @@
-import express from "express";
+import express from 'express';
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("change me to see updates, express, hmr");
+app.get('/', (req, res) => {
+  res.send('change me to see updates, express, hmr');
 });
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   app.listen(3000);
 }
 

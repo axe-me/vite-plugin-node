@@ -1,7 +1,7 @@
-import { createFilter } from "@rollup/pluginutils";
-import { Options, transform } from "@swc/core";
-import { Plugin } from "vite";
-import { cleanUrl } from "./utils";
+import { createFilter } from '@rollup/pluginutils';
+import { Options, transform } from '@swc/core';
+import { Plugin } from 'vite';
+import { cleanUrl } from './utils';
 
 export function RollupPluginSwc(options: Options): Plugin {
   // todo: load swc/tsconfig from config files
@@ -13,7 +13,7 @@ export function RollupPluginSwc(options: Options): Plugin {
   const filter = createFilter(/\.(tsx?|jsx)$/, /\.js$/);
 
   return {
-    name: "rollup-plugin-swc",
+    name: 'rollup-plugin-swc',
     async transform(code, id) {
       if (filter(id) || filter(cleanUrl(id))) {
         const result = await transform(code, {
