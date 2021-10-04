@@ -12,11 +12,10 @@ const app = async () => {
   });
 
   if (process.env.NODE_ENV === 'production') {
-      app.listen(3000)
+    app.listen(3000);
   }
 
-  return app
-}
-
+  return app;
+};
 
 export const viteNodeApp = app();

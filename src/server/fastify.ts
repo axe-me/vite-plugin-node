@@ -1,9 +1,11 @@
-import { RequestAdapter } from "..";
-import { FastifyInstance } from "fastify"
+import { FastifyInstance } from 'fastify';
+import { RequestAdapter } from '..';
 
-export const FastifyHandler: RequestAdapter<FastifyInstance> = async (app, req, res) => {
+export const FastifyHandler: RequestAdapter<FastifyInstance> = async (
+  app,
+  req,
+  res
+) => {
   await app.ready();
-
-  // @ts-ignore wait this PR https://github.com/fastify/fastify/pull/3270
   app.routing(req, res);
-}
+};

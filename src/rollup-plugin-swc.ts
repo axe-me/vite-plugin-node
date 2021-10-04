@@ -10,10 +10,7 @@ export function RollupPluginSwc(options: Options): Plugin {
     ...options
   };
 
-  const filter = createFilter(
-    /\.(tsx?|jsx)$/,
-    /\.js$/
-  )
+  const filter = createFilter(/\.(tsx?|jsx)$/, /\.js$/);
 
   return {
     name: 'rollup-plugin-swc',
@@ -21,12 +18,12 @@ export function RollupPluginSwc(options: Options): Plugin {
       if (filter(id) || filter(cleanUrl(id))) {
         const result = await transform(code, {
           ...config,
-          filename: id,
-        })
+          filename: id
+        });
         return {
           code: result.code,
           map: result.map
-        }
+        };
       }
     }
   };

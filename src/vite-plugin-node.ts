@@ -1,6 +1,6 @@
 import { Plugin } from 'vite';
 import { PLUGIN_NAME, VitePluginNodeConfig } from '.';
-import { RollupPluginSwc } from "./rollup-plugin-swc";
+import { RollupPluginSwc } from './rollup-plugin-swc';
 import { createMiddleware } from './server';
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
@@ -19,10 +19,10 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
           hmr: false
         },
         esbuild: config.tsCompiler === 'esbuild' ? {} : false,
-        VitePluginNodeConfig: config,
+        VitePluginNodeConfig: config
       }),
       configureServer: (server) => {
-        server.middlewares.use(createMiddleware(server))
+        server.middlewares.use(createMiddleware(server));
       },
       apply: 'serve'
     }
@@ -35,15 +35,15 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
           target: 'es2019',
           parser: {
             syntax: 'typescript',
-            decorators: true,
+            decorators: true
           },
           transform: {
             legacyDecorator: true,
-            decoratorMetadata: true,
-          },
-        },
+            decoratorMetadata: true
+          }
+        }
       })
-    })
+    });
   }
 
   return plugins;

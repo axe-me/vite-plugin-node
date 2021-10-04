@@ -3,7 +3,7 @@ import { VitePluginNode } from 'vite-plugin-node';
 
 export default defineConfig({
   server: {
-    port: 3699,
+    port: 3699
   },
   plugins: [
     ...VitePluginNode({
@@ -11,4 +11,4 @@ export default defineConfig({
       appPath: './app.ts'
     })
   ]
-})
+});

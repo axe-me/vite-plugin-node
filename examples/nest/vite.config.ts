@@ -6,7 +6,7 @@ export default defineConfig({
     ...VitePluginNode({
       adapter: 'nest',
       appPath: './src/main.ts',
-      tsCompiler: 'swc'
-    })
-  ]
-})
+      tsCompiler: 'swc',
+    }),
+  ],
+});
