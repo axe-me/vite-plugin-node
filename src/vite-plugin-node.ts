@@ -1,14 +1,14 @@
-import { Plugin } from 'vite';
-import { PLUGIN_NAME, VitePluginNodeConfig } from '.';
+import { Plugin } from "vite";
+import { PLUGIN_NAME, VitePluginNodeConfig } from ".";
 import { RollupPluginSwc } from "./rollup-plugin-swc";
-import { createMiddleware } from './server';
+import { createMiddleware } from "./server";
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const config: VitePluginNodeConfig = {
     appPath: cfg.appPath,
     adapter: cfg.adapter,
-    tsCompiler: cfg.tsCompiler ?? 'esbuild',
-    exportName: cfg.exportName ?? 'viteNodeApp'
+    tsCompiler: cfg.tsCompiler ?? "esbuild",
+    exportName: cfg.exportName ?? "viteNodeApp",
   };
 
   const plugins: Plugin[] = [
@@ -16,25 +16,25 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
       name: PLUGIN_NAME,
       config: () => ({
         server: {
-          hmr: false
+          hmr: false,
         },
-        esbuild: config.tsCompiler === 'esbuild' ? {} : false,
+        esbuild: config.tsCompiler === "esbuild" ? {} : false,
         VitePluginNodeConfig: config,
       }),
       configureServer: (server) => {
-        server.middlewares.use(createMiddleware(server))
+        server.middlewares.use(createMiddleware(server));
       },
-      apply: 'serve'
-    }
+      apply: "serve",
+    },
   ];
 
-  if (config.tsCompiler === 'swc') {
+  if (config.tsCompiler === "swc") {
     plugins.push({
       ...RollupPluginSwc({
         jsc: {
-          target: 'es2019',
+          target: "es2019",
           parser: {
-            syntax: 'typescript',
+            syntax: "typescript",
             decorators: true,
           },
           transform: {
@@ -42,8 +42,8 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
             decoratorMetadata: true,
           },
         },
-      })
-    })
+      }),
+    });
   }
 
   return plugins;

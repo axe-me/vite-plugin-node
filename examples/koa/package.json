@@ -7,10 +7,10 @@
     "dev": "vite"
   },
   "dependencies": {
-    "koa": "^2.13.1"
+    "koa": "^2.13.3"
   },
   "devDependencies": {
-    "vite": "^2.5.0",
+    "vite": "^2.6.2",
     "vite-plugin-node": "^0.0.14"
   }
 }

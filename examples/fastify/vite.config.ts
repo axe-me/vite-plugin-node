@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
-import { VitePluginNode } from 'vite-plugin-node';
+import { defineConfig } from "vite";
+import { VitePluginNode } from "vite-plugin-node";
 
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      adapter: 'fastify',
-      appPath: './app.ts'
-    })
-  ]
-})
+      adapter: "fastify",
+      appPath: "./app.ts",
+    }),
+  ],
+});

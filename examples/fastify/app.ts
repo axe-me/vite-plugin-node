@@ -1,22 +1,21 @@
-import fastify from 'fastify';
+import fastify from "fastify";
 
 const app = async () => {
   const app = fastify();
 
-  app.get('/', (req, reply) => {
-    reply.send('change me to see updates, fastify');
+  app.get("/", (req, reply) => {
+    reply.send("change me to see updates, fastify");
   });
 
-  app.get('/ping', (req, reply) => {
-    reply.send({ msg: 'pong' });
+  app.get("/ping", (req, reply) => {
+    reply.send({ msg: "pong" });
   });
 
-  if (process.env.NODE_ENV === 'production') {
-      app.listen(3000)
+  if (process.env.NODE_ENV === "production") {
+    app.listen(3000);
   }
 
-  return app
-}
-
+  return app;
+};
 
 export const viteNodeApp = app();
