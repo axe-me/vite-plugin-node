@@ -7,7 +7,7 @@ import {
   RequestAdapter,
   RequestAdapterOption,
   ViteConfig,
-  VitePluginNodeConfig,
+  VitePluginNodeConfig
 } from '..';
 import { createDebugger } from '../utils';
 import { ExpressHandler } from './express';
@@ -21,7 +21,7 @@ export const SUPPORTED_FRAMEWORKS = {
   express: ExpressHandler,
   nest: NestHandler,
   koa: KoaHandler,
-  fastify: FastifyHandler,
+  fastify: FastifyHandler
 };
 
 export const getPluginConfig = (

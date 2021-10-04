@@ -38,7 +38,7 @@
      // ...vite configures
      server: {
        // vite server configs, for details see [vite doc](https://vitejs.dev/config/#server-host)
-       port: 3000,
+       port: 3000
      },
      plugins: [
        ...VitePluginNode({
@@ -59,9 +59,9 @@
          // by default this plugin is using vite default ts compiler which is esbuild
          // 'swc' compiler is supported to use as well for frameworks
          // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
-         tsCompiler: 'esbuild',
-       }),
-     ],
+         tsCompiler: 'esbuild'
+       })
+     ]
    });
    ```
 
@@ -171,9 +171,9 @@ export default defineConfig({
       adapter: function (app, req, res) {
         app(res, res);
       },
-      appPath: './app.ts',
-    }),
-  ],
+      appPath: './app.ts'
+    })
+  ]
 });
 ```
 

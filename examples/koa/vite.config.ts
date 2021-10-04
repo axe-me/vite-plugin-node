@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [
     ...VitePluginNode({
       adapter: 'koa',
-      appPath: './app.ts',
-    }),
-  ],
+      appPath: './app.ts'
+    })
+  ]
 });

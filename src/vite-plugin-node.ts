@@ -8,7 +8,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     appPath: cfg.appPath,
     adapter: cfg.adapter,
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
-    exportName: cfg.exportName ?? 'viteNodeApp',
+    exportName: cfg.exportName ?? 'viteNodeApp'
   };
 
   const plugins: Plugin[] = [
@@ -16,16 +16,16 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
       name: PLUGIN_NAME,
       config: () => ({
         server: {
-          hmr: false,
+          hmr: false
         },
         esbuild: config.tsCompiler === 'esbuild' ? {} : false,
-        VitePluginNodeConfig: config,
+        VitePluginNodeConfig: config
       }),
       configureServer: (server) => {
         server.middlewares.use(createMiddleware(server));
       },
-      apply: 'serve',
-    },
+      apply: 'serve'
+    }
   ];
 
   if (config.tsCompiler === 'swc') {
@@ -35,14 +35,14 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
           target: 'es2019',
           parser: {
             syntax: 'typescript',
-            decorators: true,
+            decorators: true
           },
           transform: {
             legacyDecorator: true,
-            decoratorMetadata: true,
-          },
-        },
-      }),
+            decoratorMetadata: true
+          }
+        }
+      })
     });
   }
 
