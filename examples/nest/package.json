@@ -51,7 +51,7 @@
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5",
     "vite": "^2.6.2",
-    "vite-plugin-node": "^0.0.14"
+    "vite-plugin-node": "^0.0.15"
   },
   "jest": {
     "moduleFileExtensions": [
