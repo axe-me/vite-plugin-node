@@ -1,12 +1,10 @@
 <p align="center">
   <img src="./node-vite.png" width="200px">
-</p>\
+</p>
 <p align="center">
-
-[![npm package](https://img.shields.io/npm/v/vite-plugin-node.svg)](https://www.npmjs.com/package/vite-plugin-node)
-[![node compatibility](https://img.shields.io/node/v/vite-plugin-node.svg)](https://nodejs.org/en/about/releases/")
-
-</p>\
+  [![npm package](https://img.shields.io/npm/v/vite-plugin-node.svg)](https://www.npmjs.com/package/vite-plugin-node)
+  [![node compatibility](https://img.shields.io/node/v/vite-plugin-node.svg)](https://nodejs.org/en/about/releases)
+</p>
 
 # Vite Plugin Node
 
@@ -16,7 +14,7 @@
 
 - All the perks from Vite plus:
 - Node server HMR! (hot module replacement)
-- Support Express, Fastify, Koa and Nest out of box
+- Support Express, Fastify, Koa and Nest out of the box
 - Support Custom Request Adapter
 - You can choose to use `esbuild` or `swc` to compile your typescript files
 
@@ -76,7 +74,7 @@ const app = express();
 
 // your beautiful code...
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.PROD) {
   app.listen(3000);
 }
 
@@ -92,7 +90,7 @@ const app = new Koa();
 
 // your beautiful code...
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.PROD) {
   app.listen(3000);
 }
 
@@ -108,7 +106,7 @@ const app = fastify();
 
 // your beautiful code...
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.PROD) {
   app.listen(3000);
 }
 
@@ -136,7 +134,7 @@ export const viteNodeApp = app(options);
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.PROD) {
   async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     await app.listen(3000);
