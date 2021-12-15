@@ -2,8 +2,8 @@
   <img src="./node-vite.png" width="200px">
 </p>
 <p align="center">
-  [![npm package](https://img.shields.io/npm/v/vite-plugin-node.svg)](https://www.npmjs.com/package/vite-plugin-node)
-  [![node compatibility](https://img.shields.io/node/v/vite-plugin-node.svg)](https://nodejs.org/en/about/releases)
+  <a href="https://www.npmjs.com/package/vite-plugin-node"><img src="https://img.shields.io/npm/v/vite-plugin-node.svg" alt="npm package"></a>
+  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite-plugin-node.svg" alt="node compatibility"></a>
 </p>
 
 # Vite Plugin Node
