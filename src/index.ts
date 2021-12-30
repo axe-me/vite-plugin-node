@@ -10,11 +10,12 @@ export declare type SupportedFrameworks =
   | 'express'
   | 'nest'
   | 'koa'
-  | 'fastify';
+  | 'fastify'
+  | 'marble';
 export declare type RequestAdapter<App = {}> = (
   app: App,
   req: http.IncomingMessage,
-  res: http.ServerResponse
+  res: http.ServerResponse,
 ) => void | Promise<void>;
 export declare type RequestAdapterOption = SupportedFrameworks | RequestAdapter;
 
