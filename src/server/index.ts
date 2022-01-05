@@ -44,7 +44,7 @@ const getRequestHandler = (
   handler: RequestAdapterOption
 ): RequestAdapter | undefined => {
   if (typeof handler === 'function') {
-    debugServer(chalk.dim`server config set to custom`);
+    debugServer(chalk.dim`using custom server handler`);
     return handler;
   }
   debugServer(chalk.dim`creating ${handler} node server`);
@@ -77,7 +77,7 @@ export const createMiddleware = (
     } else {
       // some app may be created with a function returning a promise
       app = await app;
-      await requestHandler(app, req, res);
+      await requestHandler(app, req, res, server);
     }
   };
 };

@@ -1,12 +1,10 @@
 <p align="center">
   <img src="./node-vite.png" width="200px">
 </p>
-<br/>
 <p align="center">
   <a href="https://www.npmjs.com/package/vite-plugin-node"><img src="https://img.shields.io/npm/v/vite-plugin-node.svg" alt="npm package"></a>
   <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite-plugin-node.svg" alt="node compatibility"></a>
 </p>
-<br/>
 
 # Vite Plugin Node
 
@@ -16,7 +14,7 @@
 
 - All the perks from Vite plus:
 - Node server HMR! (hot module replacement)
-- Support Express, Fastify, Koa and Nest out of box
+- Support Express, Fastify, Koa and Nest out of the box
 - Support Custom Request Adapter
 - You can choose to use `esbuild` or `swc` to compile your typescript files
 
@@ -25,9 +23,11 @@
 ---
 
 1. Install vite and this plugin with your favorite package manager, here use npm as example:
+
    ```bash
    npm install vite vite-plugin-node -D
    ```
+
 2. Create a `vite.config.ts` file in your project root to config vite to actually use this plugin:
 
    ```ts
@@ -67,84 +67,84 @@
 
 3. Update your server entry to export your app named `viteNodeApp` or the name you configured.
 
-   ### ExpressJs
+### ExpressJs
 
-   ```ts
-   const app = express();
+```ts
+const app = express();
 
-   // your beautiful code...
+// your beautiful code...
 
-   if (process.env.NODE_ENV === 'production') {
-     app.listen(3000);
-   }
+if (import.meta.env.PROD) {
+  app.listen(3000);
+}
 
-   export const viteNodeApp = app;
-   ```
+export const viteNodeApp = app;
+```
 
-   ### KoaJs
+### KoaJs
 
-   ```ts
-   import Koa from 'koa';
+```ts
+import Koa from 'koa';
 
-   const app = new Koa();
+const app = new Koa();
 
-   // your beautiful code...
+// your beautiful code...
 
-   if (process.env.NODE_ENV === 'production') {
-     app.listen(3000);
-   }
+if (import.meta.env.PROD) {
+  app.listen(3000);
+}
 
-   export const viteNodeApp = app;
-   ```
+export const viteNodeApp = app;
+```
 
-   ### Fastify
+### Fastify
 
-   ```ts
-   import fastify from 'fastify';
+```ts
+import fastify from 'fastify';
 
-   const app = fastify();
+const app = fastify();
 
-   // your beautiful code...
+// your beautiful code...
 
-   if (process.env.NODE_ENV === 'production') {
-     app.listen(3000);
-   }
+if (import.meta.env.PROD) {
+  app.listen(3000);
+}
 
-   export const viteNodeApp = app;
-   ```
+export const viteNodeApp = app;
+```
 
-   if the app created by an async factory function you can just export the promise.
+if the app created by an async factory function you can just export the promise.
 
-   ```ts
-   import fastify from 'fastify';
+```ts
+import fastify from 'fastify';
 
-   const app = async (options) => {
-     const app = fastify(options);
-     // app logics...
-     return app;
-   };
+const app = async (options) => {
+  const app = fastify(options);
+  // app logics...
+  return app;
+};
 
-   // note here we need to run the function to get the promise.
-   export const viteNodeApp = app(options);
-   ```
+// note here we need to run the function to get the promise.
+export const viteNodeApp = app(options);
+```
 
-   ### NestJs
+### NestJs
 
-   ```ts
-   import { NestFactory } from '@nestjs/core';
-   import { AppModule } from './app.module';
+```ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
 
-   if (process.env.NODE_ENV === 'production') {
-     async function bootstrap() {
-       const app = await NestFactory.create(AppModule);
-       await app.listen(3000);
-     }
+if (import.meta.env.PROD) {
+  async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    await app.listen(3000);
+  }
 
-     bootstrap();
-   }
+  bootstrap();
+}
 
-   export const viteNodeApp = NestFactory.create(AppModule); // this returns a Promise, which is ok, this plugin can handle it
-   ```
+export const viteNodeApp = NestFactory.create(AppModule); // this returns a Promise, which is ok, this plugin can handle it
+```
 
 4. Add a npm script to run the dev server:
 
@@ -158,7 +158,7 @@
 
 ## Custom Adapter
 
-If your favorite framework not supported yet, you can either create an issue to request it or use the `adapter` option to tell the plugin how to pass down the request to your app. You can take a look how the supported frameworks implementations from the `./src/server` folder.  
+If your favorite framework not supported yet, you can either create an issue to request it or use the `adapter` option to tell the plugin how to pass down the request to your app. You can take a look how the supported frameworks implementations from the `./src/server` folder.
 Example:
 
 ```ts
@@ -185,25 +185,25 @@ See the examples folder.
 
 ---
 
-While frontend development tooling is evolving rapidly in recent years, backend DX is still like in stone age. No hot module replacement; Typescript recompiling slow as funk; Lack of plugin system etc. Thanks to Vitejs created by Evan You (A.K.A creator of vuejs; my biggest idol developer), makes all those dreams for backend development come true!
+While frontend development tooling is evolving rapidly in recent years, backend DX is still like in stone age. No hot module replacement; Typescript recompiling slow as funk; Lack of plugin system etc. Thanks to Vite.js created by Evan You (A.K.A creator of vue.js; my biggest idol developer), makes all those dreams for backend development come true!
 
 ## How?
 
 ---
 
-Vite by design have a middlewareMode which allow us to use vite programmatically inside other module. It's originally made for SSR web app originally. So that for each request, vite can load the renderer to render the latest changes you made to your app. This plugin leverage this feature to load and execute your server app entry.
+Vite by design has a middleware mode, which allows us to use it programmatically inside other modules. It's originally made for SSR, so that for each request, vite can load the renderer and render the latest changes you made to your app (<https://vitejs.dev/guide/ssr.html>). This plugin leverages this feature to load and execute your server app entry.
 
-You may ask isn't super slow since it re-compile/reload entire app from the entry? The answer is NO, because vite is smart. Vite has a builtin module graph as a cache layer, the graph is built up at the first time your app load. After that, when you update one file, vite will only invalidate itself and its parents modules, so that for next request, only those invalidated module need to be re-compiled which is super fast thanks to esbuild and swc.
+You may ask, isn't super slow, since it re-compiles/reloads the entire app? The answer is NO, because vite is smart. It has a builtin module graph as a cache layer, the graph is built up the first time your app loads. After that, when you update a file, vite will only invalidate that one and its parent modules, so that for next request, only those invalidated modules need to be re-compiled which is super fast thanks to esbuild or swc.
 
 ## To-Do
 
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:
 
-- [ ] Build the app into a bundle for production.
-- [ ] Test with large node project, I need y'all helps on this!
-- [ ] make SWC compiler configurable
+- [ ] Build the app into a bundle for production. (See [this issue](https://github.com/axe-me/vite-plugin-node/issues/4))
+- [ ] Test with a large node project, I need y'all helps on this!
+- [ ] Make the SWC compiler configurable
 - [ ] Unit tests
 
 ## Bugs
 
-Create an issue if you found any bugs to help me to improve this project please!
+Please create an issue if you found any bugs, to help me improve this project!

@@ -1,5 +1,5 @@
 import http from 'http';
-import { UserConfig } from 'vite';
+import { UserConfig, ViteDevServer } from 'vite';
 
 export { RollupPluginSwc } from './rollup-plugin-swc';
 export { VitePluginNode } from './vite-plugin-node';
@@ -11,11 +11,14 @@ export declare type SupportedFrameworks =
   | 'nest'
   | 'koa'
   | 'fastify';
-export declare type RequestAdapter<App = {}> = (
+
+export declare type RequestAdapter<App = any> = (
   app: App,
   req: http.IncomingMessage,
-  res: http.ServerResponse
+  res: http.ServerResponse,
+  server: ViteDevServer
 ) => void | Promise<void>;
+
 export declare type RequestAdapterOption = SupportedFrameworks | RequestAdapter;
 
 export declare type SupportedTSCompiler = 'esbuild' | 'swc';
