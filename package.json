@@ -1,11 +1,35 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Vite plugin to enable your node server HMR",
+  "author": "Axe",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axe-me/vite-plugin-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axe-me/vite-plugin-node/issues"
+  },
+  "homepage": "https://github.com/axe-me/vite-plugin-node#readme",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "node",
+    "hmr"
+  ],
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build-dist": "tsc",
+    "build": "run-s prebuild build-dist",
+    "dev": "tsc -w --incremental",
+    "lint": "eslint --ext .ts src/**",
+    "format": "prettier --write .",
+    "prebuild": "rimraf dist && npm run lint"
+  },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.1",
     "@swc/core": "^1.2.93",
@@ -40,29 +64,5 @@
     "typescript": "^4.4.3",
     "vite": "^2.6.2",
     "reflect-metadata": "^0.1.13"
-  },
-  "scripts": {
-    "build-dist": "tsc",
-    "build": "run-s prebuild build-dist",
-    "dev": "tsc -w --incremental",
-    "lint": "eslint --ext .ts src/**",
-    "format": "prettier --write .",
-    "prebuild": "rimraf dist && npm run lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/axe-me/vite-plugin-node.git"
-  },
-  "keywords": [
-    "vite",
-    "vite-plugin",
-    "node",
-    "hmr"
-  ],
-  "author": "Axe",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/axe-me/vite-plugin-node/issues"
-  },
-  "homepage": "https://github.com/axe-me/vite-plugin-node#readme"
+  }
 }
