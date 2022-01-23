@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Marble.js test",
   "main": "index.js",
-  "license": "mMIT",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "vite": "^2.6.2",
-    "vite-plugin-node": "^0.0.15"
+    "vite-plugin-node": "^0.0.17"
   }
 }
