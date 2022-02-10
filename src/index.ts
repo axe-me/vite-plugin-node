@@ -10,7 +10,8 @@ export declare type SupportedFrameworks =
   | 'express'
   | 'nest'
   | 'koa'
-  | 'fastify';
+  | 'fastify'
+  | 'marble';
 
 export declare type RequestAdapter<App = any> = (
   app: App,

@@ -62,3 +62,5 @@ build/Release
 # Misc
 .DS_Store
 /.dccache
+
+/examples/*/dist

@@ -14,6 +14,7 @@ import { ExpressHandler } from './express';
 import { FastifyHandler } from './fastify';
 import { KoaHandler } from './koa';
 import { NestHandler } from './nest';
+import { MarbleHandler } from './marble';
 
 export const debugServer = createDebugger('vite:node-plugin:server');
 
@@ -21,7 +22,8 @@ export const SUPPORTED_FRAMEWORKS = {
   express: ExpressHandler,
   nest: NestHandler,
   koa: KoaHandler,
-  fastify: FastifyHandler
+  fastify: FastifyHandler,
+  marble: MarbleHandler
 };
 
 export const getPluginConfig = (

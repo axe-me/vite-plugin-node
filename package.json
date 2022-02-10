@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Vite plugin to enable your node server HMR",
   "author": "Axe",
   "license": "MIT",
@@ -40,6 +40,8 @@
     "vite": "^2.6.2"
   },
   "devDependencies": {
+    "@marblejs/core": "^4.0.2",
+    "@marblejs/http": "^4.0.2",
     "@nestjs/common": "^8.0.9",
     "@types/debug": "^4.1.7",
     "@types/estree": "^0.0.50",
@@ -53,12 +55,14 @@
     "eslint-plugin-node": "^11.1.0",
     "express": "^4.17.1",
     "fastify": "^3.22.0",
+    "fp-ts": "^2.11.5",
     "koa": "^2.13.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
     "rxjs": "^7.3.1",
     "typescript": "^4.4.3",
-    "vite": "^2.6.2"
+    "vite": "^2.6.2",
+    "reflect-metadata": "^0.1.13"
   }
 }

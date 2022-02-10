@@ -1,0 +1,31 @@
+{
+  "name": "marble-example",
+  "version": "1.0.0",
+  "description": "Marble.js test",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@marblejs/core": "^4.0.2",
+    "@marblejs/http": "^4.0.2",
+    "@marblejs/middleware-body": "^4.0.2",
+    "@marblejs/middleware-cors": "^4.0.2",
+    "@marblejs/middleware-io": "^4.0.2",
+    "@marblejs/middleware-logger": "^4.0.2",
+    "@marblejs/middleware-multipart": "^4.0.2",
+    "@marblejs/messaging": "^4.0.2",
+    "@marblejs/testing": "^4.0.2",
+    "@marblejs/websockets": "^4.0.2",
+    "@types/node": "^10.1.2",
+    "fp-ts": "^2.8.2",
+    "rxjs": "^7.1.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "vite": "^2.6.2",
+    "vite-plugin-node": "^0.0.17"
+  }
+}
