@@ -1,6 +1,10 @@
 {
-  "include": ["./src"],
-  "exclude": ["**/__tests__"],
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "**/__tests__"
+  ],
   "rootDir": "src",
   "compilerOptions": {
     "moduleResolution": "node",
@@ -14,7 +18,9 @@
     "target": "ES2018",
     "outDir": "./dist",
     "module": "commonjs",
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "sourceMap": true
   }
 }

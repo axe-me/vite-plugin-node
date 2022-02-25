@@ -177,6 +177,16 @@ export default defineConfig({
 });
 ```
 
+## Build
+This plugin leverages Vite SSR mode to build your app. All you need to do is add a build script to your package.json:
+
+   ```json
+   "scripts": {
+     "build": "vite build"
+   },
+   ```
+For more build config please check [vite doc](https://vitejs.dev/config/#build-target)
+
 ## Examples
 
 See the examples folder.
@@ -199,7 +209,6 @@ You may ask, isn't super slow, since it re-compiles/reloads the entire app? The 
 
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:
 
-- [ ] Build the app into a bundle for production. (See [this issue](https://github.com/axe-me/vite-plugin-node/issues/4))
 - [ ] Test with a large node project, I need y'all helps on this!
 - [ ] Make the SWC compiler configurable
 - [ ] Unit tests

@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "vite build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -50,8 +50,8 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5",
-    "vite": "^2.6.2",
-    "vite-plugin-node": "^0.0.15"
+    "vite": "^2.8.0",
+    "vite-plugin-node": "^0.0.17"
   },
   "jest": {
     "moduleFileExtensions": [

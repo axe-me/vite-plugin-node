@@ -11,5 +11,4 @@ export interface MarbleContext {
 export const MarbleHandler: RequestAdapter<MarbleContext> = async (app, req, res) => {
     const server = await app.server;
     app.listener(server.context)(req, res);
-
-};
+}

@@ -7,6 +7,7 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    'node/no-unsupported-features/node-builtins': 'off',
     'no-debugger': ['error'],
     'node/shebang': 'off',
     'node/no-missing-import': [

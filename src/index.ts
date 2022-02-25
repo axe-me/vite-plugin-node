@@ -27,6 +27,7 @@ export declare type SupportedTSCompiler = 'esbuild' | 'swc';
 export interface VitePluginNodeConfig {
   appPath: string;
   adapter: RequestAdapterOption;
+  appName?: string;
   exportName?: string;
   tsCompiler?: SupportedTSCompiler;
 }

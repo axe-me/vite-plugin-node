@@ -4,13 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "vite": "^2.6.2",
-    "vite-plugin-node": "0.0.15"
+    "vite": "^2.8.0",
+    "vite-plugin-node": "0.0.17"
   }
 }

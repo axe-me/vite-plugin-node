@@ -7,6 +7,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const config: VitePluginNodeConfig = {
     appPath: cfg.appPath,
     adapter: cfg.adapter,
+    appName: cfg.appName ?? 'app',
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
     exportName: cfg.exportName ?? 'viteNodeApp'
   };
@@ -15,6 +16,9 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     {
       name: PLUGIN_NAME,
       config: () => ({
+        build: {
+          ssr: config.appPath
+        },
         server: {
           hmr: false
         },
@@ -23,8 +27,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
       }),
       configureServer: (server) => {
         server.middlewares.use(createMiddleware(server));
-      },
-      apply: 'serve'
+      }
     }
   ];
 

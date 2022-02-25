@@ -1,8 +1,12 @@
 # Changelog
 
+## 0.0.17
+use ssr mode to build for production instead of using library mode
 ## 0.0.16
 
 - Pass the dev server to the handler
+- Requires vite 2.8 as peer dependency
+- add vite build!
 
 ## 0.0.15
 
