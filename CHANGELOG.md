@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.18
+### ⚠️ **Breaking Changes!** ⚠️
+- @swc/core now is an optional peer dependency. if you want to use it as typescript compiler, you need to install it as dev dependency.
+
+### other changes
+- config vite rollup config to tell vite the entry point to mute the warning
+- now support customize swc config.
+
 ## 0.0.17
 use ssr mode to build for production instead of using library mode
 ## 0.0.16

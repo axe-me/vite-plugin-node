@@ -1,3 +1,4 @@
+import { Options } from '@swc/core';
 import http from 'http';
 import { UserConfig, ViteDevServer } from 'vite';
 
@@ -30,6 +31,7 @@ export interface VitePluginNodeConfig {
   appName?: string;
   exportName?: string;
   tsCompiler?: SupportedTSCompiler;
+  swcOptions?: Options
 }
 
 export declare interface ViteConfig extends UserConfig {

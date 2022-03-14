@@ -9,7 +9,21 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     adapter: cfg.adapter,
     appName: cfg.appName ?? 'app',
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
-    exportName: cfg.exportName ?? 'viteNodeApp'
+    exportName: cfg.exportName ?? 'viteNodeApp',
+    swcOptions: {
+      jsc: {
+        target: 'es2019',
+        parser: {
+          syntax: 'typescript',
+          decorators: true
+        },
+        transform: {
+          legacyDecorator: true,
+          decoratorMetadata: true
+        }
+      },
+      ...cfg.swcOptions
+    }
   };
 
   const plugins: Plugin[] = [
@@ -17,7 +31,10 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
       name: PLUGIN_NAME,
       config: () => ({
         build: {
-          ssr: config.appPath
+          ssr: config.appPath,
+          rollupOptions: {
+            input: config.appPath,
+          },
         },
         server: {
           hmr: false
@@ -33,19 +50,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
 
   if (config.tsCompiler === 'swc') {
     plugins.push({
-      ...RollupPluginSwc({
-        jsc: {
-          target: 'es2019',
-          parser: {
-            syntax: 'typescript',
-            decorators: true
-          },
-          transform: {
-            legacyDecorator: true,
-            decoratorMetadata: true
-          }
-        }
-      })
+      ...RollupPluginSwc(config.swcOptions!),
     });
   }
 

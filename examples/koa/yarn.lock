@@ -604,7 +604,7 @@ vary@^1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vite-plugin-node@^0.0.17:
+vite-plugin-node@^0.0.18:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.15.tgz#6dc070b034342b598c0f778ebd05178418a54ad2"
   integrity sha512-lVOL4SbBozedjC1NS3KQq4wDU+9OLn29B4AZJwmCyDvDMHS4VMTtjeUMpb11/sLm86YlXA0VeTB92uGeAaN9Yw==

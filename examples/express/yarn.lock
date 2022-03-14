@@ -729,9 +729,9 @@ vite-plugin-commonjs-externals@^0.1.1:
     es-module-lexer "^0.4.1"
     magic-string "^0.25.7"
 
-vite-plugin-node@0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.17.tgz#243a1f854806ee3a3c0be54d98acfc111545466d"
+vite-plugin-node@0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.18.tgz#243a1f854806ee3a3c0be54d98acfc111545466d"
   integrity sha512-6LCYaTZ4f2ZrPZGeZRhgOzVcM/p0d4qOE+kKIRxyggEdZ0ZIUmAtwSFWnYByrDDw/wRHMXcASuPQJZbWI95Jnw==
   dependencies:
     "@rollup/pluginutils" "^4.1.1"

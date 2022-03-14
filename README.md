@@ -59,7 +59,24 @@
          // by default this plugin is using vite default ts compiler which is esbuild
          // 'swc' compiler is supported to use as well for frameworks
          // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
-         tsCompiler: 'esbuild'
+         // you need to INSTALL `@swc/core` as dev dependency if you want to use swc
+         tsCompiler: 'esbuild',
+
+         // Optional, default: {
+         // jsc: {
+         //   target: 'es2019',
+         //   parser: {
+         //     syntax: 'typescript',
+         //     decorators: true
+         //   },
+         //  transform: {
+         //     legacyDecorator: true,
+         //     decoratorMetadata: true
+         //   }
+         // }
+         //}
+         // swc configs, see [swc doc](https://swc.rs/docs/configuration/swcrc)
+         swcOptions: {}
        })
      ]
    });
@@ -93,6 +110,16 @@ const app = new Koa();
 if (import.meta.env.PROD) {
   app.listen(3000);
 }
+
+export const viteNodeApp = app;
+```
+
+### Cloud Functions
+
+```ts
+const app = async (req, res) => {
+  // your beautiful code...
+};
 
 export const viteNodeApp = app;
 ```
@@ -210,7 +237,6 @@ You may ask, isn't super slow, since it re-compiles/reloads the entire app? The 
 As this plugin just fresh developed, there are still lots ideas need to be implemented, including:
 
 - [ ] Test with a large node project, I need y'all helps on this!
-- [ ] Make the SWC compiler configurable
 - [ ] Unit tests
 
 ## Bugs

@@ -5,13 +5,16 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "start": "functions-framework --port 8189 --source=dist/app.js --target=main"
   },
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.0.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "vite": "^2.8.0",
+    "@swc/core": "^1.2.155",
+    "vite": "^2.8.6",
     "vite-plugin-node": "0.0.18"
   }
 }
