@@ -32,17 +32,23 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.1",
-    "@swc/core": "^1.2.93",
     "chalk": "^4.1.2",
     "debug": "^4.3.2"
   },
   "peerDependencies": {
+    "@swc/core": "^1.2.153",
     "vite": "^2.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@swc/core": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@marblejs/core": "^4.0.2",
     "@marblejs/http": "^4.0.2",
     "@nestjs/common": "^8.0.9",
+    "@swc/core": "^1.2.153",
     "@types/debug": "^4.1.7",
     "@types/estree": "^0.0.50",
     "@types/express": "^4.17.13",
