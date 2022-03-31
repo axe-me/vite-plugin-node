@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.19
+- set swc default config module to es6
+- do deep merge for swc config
+
 ## 0.0.18
 ### ⚠️ **Breaking Changes!** ⚠️
 - @swc/core now is an optional peer dependency. if you want to use it as typescript compiler, you need to install it as dev dependency.

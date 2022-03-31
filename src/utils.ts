@@ -14,3 +14,30 @@ export const hashRE = /#.*$/;
 
 export const cleanUrl = (url: string) =>
   url.replace(hashRE, '').replace(queryRE, '');
+
+export function isObject(item: any): item is object {
+  return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
+
+export default function mergeDeep(target: object, source: object) {
+  let output = Object.assign({}, target);
+  if (isObject(target) && isObject(source)) {
+    Object.keys(source).forEach(key => {
+      // @ts-ignore
+      if (isObject(source[key])) {
+        if (!(key in target)) {
+          // @ts-ignore
+          Object.assign(output, { [key]: source[key] });
+        } else {
+          // @ts-ignore
+          output[key] = mergeDeep(target[key], source[key]);
+        }
+      } else {
+        // @ts-ignore
+        Object.assign(output, { [key]: source[key] });
+      }
+    });
+  }
+  return output;
+}

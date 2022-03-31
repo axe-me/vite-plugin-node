@@ -656,7 +656,7 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-vite-plugin-node@^0.0.18:
+vite-plugin-node@^0.0.19:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/vite-plugin-node/-/vite-plugin-node-0.0.15.tgz#6dc070b034342b598c0f778ebd05178418a54ad2"
   integrity sha512-lVOL4SbBozedjC1NS3KQq4wDU+9OLn29B4AZJwmCyDvDMHS4VMTtjeUMpb11/sLm86YlXA0VeTB92uGeAaN9Yw==
