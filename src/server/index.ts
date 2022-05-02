@@ -67,7 +67,8 @@ export const createMiddleware = (
 
   return async function (
     req: http.IncomingMessage,
-    res: http.ServerResponse
+    res: http.ServerResponse,
+    next: (err?: Error) => void,
   ): Promise<void> {
     const appModule = await server.ssrLoadModule(config.appPath);
     let app = appModule[config.exportName!];
@@ -79,7 +80,7 @@ export const createMiddleware = (
     } else {
       // some app may be created with a function returning a promise
       app = await app;
-      await requestHandler(app, req, res, server);
+      await requestHandler(app, req, res, next, server);
     }
   };
 };

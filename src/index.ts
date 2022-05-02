@@ -18,6 +18,7 @@ export declare type RequestAdapter<App = any> = (
   app: App,
   req: http.IncomingMessage,
   res: http.ServerResponse,
+  next: (err?: Error) => void,
   server: ViteDevServer
 ) => void | Promise<void>;
 
