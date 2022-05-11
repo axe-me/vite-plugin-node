@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.0
+- lazy load swc
+
 ## 1.0.0-rc
 ### ⚠️ **Breaking Changes!** ⚠️
 - The custom adapter function signature has been changed, see readme for more details.
