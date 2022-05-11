@@ -1,74 +1,7 @@
 {
-  "name": "vite-plugin-node",
-  "version": "0.0.19",
-  "description": "Vite plugin to enable your node server HMR",
-  "author": "Axe",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/axe-me/vite-plugin-node.git"
-  },
-  "bugs": {
-    "url": "https://github.com/axe-me/vite-plugin-node/issues"
-  },
-  "homepage": "https://github.com/axe-me/vite-plugin-node#readme",
-  "keywords": [
-    "vite",
-    "vite-plugin",
-    "node",
-    "hmr"
-  ],
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build-dist": "tsc",
-    "build": "run-s prebuild build-dist",
-    "dev": "tsc -w --incremental",
-    "lint": "eslint --ext .ts src/**",
-    "format": "prettier --write .",
-    "prebuild": "rimraf dist && npm run lint"
-  },
-  "dependencies": {
-    "@rollup/pluginutils": "^4.1.1",
-    "chalk": "^4.1.2",
-    "debug": "^4.3.2"
-  },
-  "peerDependencies": {
-    "@swc/core": "^1.2.153",
-    "vite": "^2.8.6"
-  },
-  "peerDependenciesMeta": {
-    "@swc/core": {
-      "optional": true
-    }
-  },
-  "devDependencies": {
-    "@marblejs/core": "^4.0.2",
-    "@marblejs/http": "^4.0.2",
-    "@nestjs/common": "^8.0.9",
-    "@swc/core": "^1.2.153",
-    "@types/debug": "^4.1.7",
-    "@types/estree": "^0.0.50",
-    "@types/express": "^4.17.13",
-    "@types/koa": "^2.13.4",
-    "@types/node": "^16.10.2",
-    "@types/rx": "^4.1.2",
-    "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-node": "^11.1.0",
-    "express": "^4.17.1",
-    "fastify": "^3.22.0",
-    "fp-ts": "^2.11.5",
-    "koa": "^2.13.3",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.4.1",
-    "reflect-metadata": "^0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.3.1",
-    "typescript": "^4.4.3",
-    "vite": "^2.8.6"
-  }
+	"devDependencies": {
+		"@antfu/eslint-config": "^0.23.0",
+		"eslint": "^8.15.0",
+		"typescript": "^4.6.4"
+	}
 }

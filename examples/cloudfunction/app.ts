@@ -15,6 +15,6 @@ const appPromise = makeApp();
 export const viteNodeApp = appPromise;
 export const main = async (req, res) => {
   const app = await appPromise;
-  
+
   app(req, res);
 };

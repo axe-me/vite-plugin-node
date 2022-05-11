@@ -1,14 +1,12 @@
 {
-  "name": "fastify-example",
+  "name": "express-example",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "debug": "vite --debug --inspect-brk",
     "build": "vite build"
-  },
-  "dependencies": {
-    "fastify": "^3.27.1"
   },
   "devDependencies": {
     "vite": "^2.9.0",

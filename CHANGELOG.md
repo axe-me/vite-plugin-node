@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.0-rc
+### ⚠️ **Breaking Changes!** ⚠️
+- The custom adapter function signature has been changed, see readme for more details.
+### other changes
+- bump peer dependency vite version to 2.9.x
+- now use Eslint instead of Prettier
+- now use pnpm instead of yarn for monorepo
+- you can truely disable esbuild when use swc as tsCompiler
+- added '@swc/core' to excluded optimized modules
+- add raw node server example
+
 ## 0.0.19
 - set swc default config module to es6
 - do deep merge for swc config

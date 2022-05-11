@@ -74,11 +74,24 @@
          //     decoratorMetadata: true
          //   }
          // }
-         //}
+         // }
          // swc configs, see [swc doc](https://swc.rs/docs/configuration/swcrc)
          swcOptions: {}
        })
-     ]
+     ],
+     optimizeDeps: {
+       // Vite does not work well with optionnal dependencies,
+       // you can mark them as ignored for now
+       // eg: for nestjs, exlude these optional dependencies:
+       // exclude: [
+       //   '@nestjs/microservices',
+       //   '@nestjs/websockets',
+       //   'cache-manager',
+       //   'class-transformer',
+       //   'class-validator',
+       //   'fastify-swagger',
+       // ],
+     },
    });
    ```
 
@@ -91,9 +104,8 @@ const app = express();
 
 // your beautiful code...
 
-if (import.meta.env.PROD) {
+if (import.meta.env.PROD)
   app.listen(3000);
-}
 
 export const viteNodeApp = app;
 ```
@@ -107,9 +119,8 @@ const app = new Koa();
 
 // your beautiful code...
 
-if (import.meta.env.PROD) {
+if (import.meta.env.PROD)
   app.listen(3000);
-}
 
 export const viteNodeApp = app;
 ```
@@ -133,9 +144,8 @@ const app = fastify();
 
 // your beautiful code...
 
-if (import.meta.env.PROD) {
+if (import.meta.env.PROD)
   app.listen(3000);
-}
 
 export const viteNodeApp = app;
 ```
@@ -195,7 +205,7 @@ import { VitePluginNode } from 'vite-plugin-node';
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      adapter: function (app, req, res) {
+      adapter({ app, server, handlerParams: { req, res, err, next } }) {
         app(res, res);
       },
       appPath: './app.ts'

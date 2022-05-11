@@ -11,8 +11,12 @@ const app = async () => {
     reply.send({ msg: 'pong' });
   });
 
+  app.get('/pong', (req, reply) => {
+    reply.send({ msg: 'ping' });
+  });
+
   if (import.meta.env.PROD) {
-    app.listen(3000);
+    app.listen(3000)
   }
 
   return app;

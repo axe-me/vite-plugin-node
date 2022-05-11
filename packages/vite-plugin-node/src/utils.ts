@@ -19,22 +19,21 @@ export function isObject(item: any): item is object {
   return (item && typeof item === 'object' && !Array.isArray(item));
 }
 
-
 export default function mergeDeep(target: object, source: object) {
-  let output = Object.assign({}, target);
+  const output = Object.assign({}, target);
   if (isObject(target) && isObject(source)) {
-    Object.keys(source).forEach(key => {
-      // @ts-ignore
+    Object.keys(source).forEach((key) => {
+      // @ts-expect-error access unknow property
       if (isObject(source[key])) {
         if (!(key in target)) {
-          // @ts-ignore
+          // @ts-expect-error access unknow property
           Object.assign(output, { [key]: source[key] });
         } else {
-          // @ts-ignore
+          // @ts-expect-error access unknow property
           output[key] = mergeDeep(target[key], source[key]);
         }
       } else {
-        // @ts-ignore
+        // @ts-expect-error access unknow property
         Object.assign(output, { [key]: source[key] });
       }
     });

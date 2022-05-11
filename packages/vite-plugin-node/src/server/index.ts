@@ -1,13 +1,15 @@
-import chalk from 'chalk';
-import http from 'http';
+import type http from 'http';
 import { exit } from 'process';
-import { Connect, Plugin, ViteDevServer } from 'vite';
-import {
-  PLUGIN_NAME,
+import chalk from 'chalk';
+import type { Connect, Plugin, ViteDevServer } from 'vite';
+import type {
   RequestAdapter,
   RequestAdapterOption,
   ViteConfig,
-  VitePluginNodeConfig
+  VitePluginNodeConfig,
+} from '..';
+import {
+  PLUGIN_NAME,
 } from '..';
 import { createDebugger } from '../utils';
 import { ExpressHandler } from './express';
@@ -23,14 +25,14 @@ export const SUPPORTED_FRAMEWORKS = {
   nest: NestHandler,
   koa: KoaHandler,
   fastify: FastifyHandler,
-  marble: MarbleHandler
+  marble: MarbleHandler,
 };
 
 export const getPluginConfig = (
-  server: ViteDevServer
+  server: ViteDevServer,
 ): VitePluginNodeConfig => {
   const plugin = server.config.plugins.find(
-    (p) => p.name === PLUGIN_NAME
+    p => p.name === PLUGIN_NAME,
   ) as Plugin;
 
   if (!plugin) {
@@ -43,7 +45,7 @@ export const getPluginConfig = (
 };
 
 const getRequestHandler = (
-  handler: RequestAdapterOption
+  handler: RequestAdapterOption,
 ): RequestAdapter | undefined => {
   if (typeof handler === 'function') {
     debugServer(chalk.dim`using custom server handler`);
@@ -54,7 +56,7 @@ const getRequestHandler = (
 };
 
 export const createMiddleware = (
-  server: ViteDevServer
+  server: ViteDevServer,
 ): Connect.HandleFunction => {
   const config = getPluginConfig(server);
   const logger = server.config.logger;
@@ -67,19 +69,20 @@ export const createMiddleware = (
 
   return async function (
     req: http.IncomingMessage,
-    res: http.ServerResponse
+    res: http.ServerResponse,
+    next: Connect.NextFunction,
   ): Promise<void> {
     const appModule = await server.ssrLoadModule(config.appPath);
     let app = appModule[config.exportName!];
     if (!app) {
       logger.error(
-        `Failed to find a named export ${config.exportName} from ${config.appPath}`
+        `Failed to find a named export ${config.exportName} from ${config.appPath}`,
       );
       process.exit(1);
     } else {
       // some app may be created with a function returning a promise
       app = await app;
-      await requestHandler(app, req, res, server);
+      await requestHandler({ app, server, req, res, next });
     }
   };
 };

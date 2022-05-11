@@ -35,7 +35,7 @@ build/Release
 **/node_modules/
 
 # Build output
-/dist/
+dist
 
 # TypeScript cache
 *.tsbuildinfo

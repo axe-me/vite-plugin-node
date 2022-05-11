@@ -1,6 +1,6 @@
 {
+  "rootDir": "src",
   "compilerOptions": {
-    "baseUrl": ".",
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
@@ -9,15 +9,13 @@
     "allowSyntheticDefaultImports": true,
     // compile away optional-chaining-operator
     // node support table: https://node.green/#ES2020-features-optional-chaining-operator-----
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ES2018",
+    "outDir": "./dist",
+    "module": "commonjs",
     "lib": [
-      "ESNext"
+      "ESNext",
+      "dom"
     ],
     "sourceMap": true
-  },
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  }
 }
