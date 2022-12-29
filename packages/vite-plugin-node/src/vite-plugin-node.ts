@@ -61,8 +61,8 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
 
         return plugincConfig;
       },
-      configureServer: (server) => {
-        server.middlewares.use(createMiddleware(server));
+      configureServer: async (server) => {
+        server.middlewares.use(await createMiddleware(server));
       },
     },
   ];
