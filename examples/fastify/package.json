@@ -11,7 +11,7 @@
     "fastify": "^3.27.1"
   },
   "devDependencies": {
-    "vite": "3",
+    "vite": "^4.0.4",
     "vite-plugin-node": "workspace:*"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Vite plugin to enable your node server HMR",
   "author": "Axe",
   "license": "MIT",
@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "@swc/core": "^1.2.153",
-    "vite": "^4.0.3"
+    "vite": "^4.0.0"
   },
   "peerDependenciesMeta": {
     "@swc/core": {
@@ -62,6 +62,6 @@
     "npm-run-all": "^4.1.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5",
-    "vite": "^4.0.3"
+    "vite": "^4.0.0"
   }
 }

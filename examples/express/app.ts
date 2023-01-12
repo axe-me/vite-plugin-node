@@ -3,7 +3,7 @@ import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('change me to see updates, express~');
+  res.send('change me to see updates, express~!');
 });
 
 app.get('/ip', async (req, res) => {

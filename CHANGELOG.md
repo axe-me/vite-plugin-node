@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0
+### ⚠️ **Breaking Changes!** ⚠️
+- update vite to 4.x
+
 ## 2.0.0
 ### ⚠️ **Breaking Changes!** ⚠️
 - update vite to 3.x

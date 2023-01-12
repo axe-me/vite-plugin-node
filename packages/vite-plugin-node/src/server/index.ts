@@ -44,12 +44,8 @@ export const getPluginConfig = async (
   ) as Plugin;
   let userConfig: UserConfig | null | void;
 
-  if (plugin) {
-    if (typeof plugin.config === 'function')
-      userConfig = await plugin.config({}, env);
-    else if (typeof plugin.config?.handler == 'function')
-      userConfig = await plugin.config?.handler!({}, env);
-  }
+  if (typeof plugin.config === 'function')
+    userConfig = await plugin.config({}, env);
 
   if (userConfig)
     return (userConfig as ViteConfig).VitePluginNodeConfig;
