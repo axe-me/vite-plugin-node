@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Vite plugin to enable your node server HMR",
   "author": "Axe",
   "license": "MIT",
@@ -36,8 +36,7 @@
     "debug": "^4.3.2"
   },
   "peerDependencies": {
-    "@swc/core": "^1.2.153",
-    "vite": "^2.9.8"
+    "vite": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "@swc/core": {
@@ -48,7 +47,7 @@
     "@marblejs/core": "^4.0.2",
     "@marblejs/http": "^4.0.2",
     "@nestjs/common": "^8.0.9",
-    "@swc/core": "^1.2.153",
+    "@swc/core": "^1.2.155",
     "@types/debug": "^4.1.7",
     "@types/estree": "^0.0.50",
     "@types/express": "^4.17.13",
