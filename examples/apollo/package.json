@@ -1,5 +1,5 @@
 {
-  "name": "express-example",
+  "name": "apollo-example",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,9 +10,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@apollo/server": "^4.3.0",
+    "cors": "^2.8.5",
+    "graphql": "^16.6.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "vite": "^3",
     "vite-plugin-node": "workspace:*"
   }

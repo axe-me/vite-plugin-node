@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0
+### ⚠️ **Breaking Changes!** ⚠️
+- update vite to 3.x
+
+- add apollo example
+
 ## 1.0.0
 - lazy load swc
 

@@ -224,6 +224,8 @@ This plugin leverages Vite SSR mode to build your app. All you need to do is add
    ```
 For more build config please check [vite doc](https://vitejs.dev/config/#build-target)
 
+> Note: By default, starting from vite v3, the ssr buildle will be in esm format. if you want to build cjs, add `ssr: { format: 'cjs' }` to your vite config.
+
 ## Examples
 
 See the examples folder.
