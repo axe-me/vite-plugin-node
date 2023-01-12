@@ -5,7 +5,10 @@ export const NestHandler: RequestAdapter<INestApplication> = async ({ app, req, 
   await app.init();
   const instance = app.getHttpAdapter().getInstance();
 
-  // Todo: handle nest-fastify case
-
-  instance(req, res);
+  if(typeof instance === 'function')
+    instance(req, res);
+  else {
+    const fastifyApp = await instance.ready();
+    fastifyApp.routing(req, res);
+  }
 };
