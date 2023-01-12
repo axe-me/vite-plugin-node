@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-node",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Vite plugin to enable your node server HMR",
   "author": "Axe",
   "license": "MIT",
@@ -20,7 +20,8 @@
   ],
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "../../readme.md"
   ],
   "scripts": {
     "build-dist": "tsc",

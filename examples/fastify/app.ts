@@ -4,7 +4,7 @@ const app = async () => {
   const app = fastify();
 
   app.get('/', (req, reply) => {
-    reply.send('change me to see updates, fastify!');
+    reply.send('change me to see updates, fastify!~');
   });
 
   app.get('/ping', (req, reply) => {
@@ -15,9 +15,8 @@ const app = async () => {
     reply.send({ msg: 'ping' });
   });
 
-  if (import.meta.env.PROD) {
-    app.listen(3000)
-  }
+  if (import.meta.env.PROD)
+    app.listen(3000);
 
   return app;
 };

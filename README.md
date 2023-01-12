@@ -97,7 +97,7 @@
 
 3. Update your server entry to export your app named `viteNodeApp` or the name you configured.
 
-### ExpressJs
+### [ExpressJs](./examples/express/app.ts)
 
 ```ts
 const app = express();
@@ -109,79 +109,12 @@ if (import.meta.env.PROD)
 
 export const viteNodeApp = app;
 ```
-
-### KoaJs
-
-```ts
-import Koa from 'koa';
-
-const app = new Koa();
-
-// your beautiful code...
-
-if (import.meta.env.PROD)
-  app.listen(3000);
-
-export const viteNodeApp = app;
-```
-
-### Cloud Functions
-
-```ts
-const app = async (req, res) => {
-  // your beautiful code...
-};
-
-export const viteNodeApp = app;
-```
-
-### Fastify
-
-```ts
-import fastify from 'fastify';
-
-const app = fastify();
-
-// your beautiful code...
-
-if (import.meta.env.PROD)
-  app.listen(3000);
-
-export const viteNodeApp = app;
-```
-
-if the app created by an async factory function you can just export the promise.
-
-```ts
-import fastify from 'fastify';
-
-const app = async (options) => {
-  const app = fastify(options);
-  // app logics...
-  return app;
-};
-
-// note here we need to run the function to get the promise.
-export const viteNodeApp = app(options);
-```
-
-### NestJs
-
-```ts
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-
-if (import.meta.env.PROD) {
-  async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-    await app.listen(3000);
-  }
-
-  bootstrap();
-}
-
-export const viteNodeApp = NestFactory.create(AppModule); // this returns a Promise, which is ok, this plugin can handle it
-```
+#### More Examples:
+- [KoaJs](./examples/koa/app.ts)
+- [Cloud Functions](./examples/cloudfunction/app.ts)
+- [Fastify](./examples/fastify/app.ts)
+- [NestJs](./examples/nest/src/main.ts)
+- [Apollo Server](./examples/apollo/app.ts)
 
 4. Add a npm script to run the dev server:
 
@@ -205,7 +138,7 @@ import { VitePluginNode } from 'vite-plugin-node';
 export default defineConfig({
   plugins: [
     ...VitePluginNode({
-      adapter({ app, server, handlerParams: { req, res, err, next } }) {
+      adapter({ app, server, req, res, next }) {
         app(res, res);
       },
       appPath: './app.ts'
