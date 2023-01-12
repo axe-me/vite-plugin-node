@@ -1,7 +1,13 @@
 import type http from 'http';
 import { exit } from 'process';
 import chalk from 'chalk';
-import type { Connect, Plugin, ViteDevServer } from 'vite';
+import type {
+  ConfigEnv,
+  Connect,
+  Plugin,
+  UserConfig,
+  ViteDevServer,
+} from 'vite';
 import type {
   RequestAdapter,
   RequestAdapterOption,
@@ -28,20 +34,28 @@ export const SUPPORTED_FRAMEWORKS = {
   marble: MarbleHandler,
 };
 
-export const getPluginConfig = (
+const env: ConfigEnv = { command: 'serve', mode: '' };
+
+export const getPluginConfig = async (
   server: ViteDevServer,
-): VitePluginNodeConfig => {
+): Promise<VitePluginNodeConfig> => {
   const plugin = server.config.plugins.find(
     p => p.name === PLUGIN_NAME,
   ) as Plugin;
+  let userConfig: UserConfig | null | void;
 
-  if (!plugin) {
-    console.error('Please setup VitePluginNode in your vite.config.js first');
-    exit(1);
+  if (plugin) {
+    if (typeof plugin.config === 'function')
+      userConfig = await plugin.config({}, env);
+    else if (typeof plugin.config?.handler == 'function')
+      userConfig = await plugin.config?.handler!({}, env);
   }
 
-  return (plugin.config!({}, { command: 'serve', mode: '' }) as ViteConfig)
-    .VitePluginNodeConfig;
+  if (userConfig)
+    return (userConfig as ViteConfig).VitePluginNodeConfig;
+
+  console.error('Please setup VitePluginNode in your vite.config.js first');
+  exit(1);
 };
 
 const getRequestHandler = (
@@ -55,10 +69,10 @@ const getRequestHandler = (
   return SUPPORTED_FRAMEWORKS[handler] as RequestAdapter;
 };
 
-export const createMiddleware = (
+export const createMiddleware = async (
   server: ViteDevServer,
-): Connect.HandleFunction => {
-  const config = getPluginConfig(server);
+): Promise<Connect.HandleFunction> => {
+  const config = await getPluginConfig(server);
   const logger = server.config.logger;
   const requestHandler = getRequestHandler(config.adapter);
 
