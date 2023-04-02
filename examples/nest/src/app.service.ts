@@ -4,6 +4,6 @@ import { str } from './str';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return `change aassdafdfsdsdftssdfdfsdafso see updates! ${str} from a new file,..`;
+    return `change To see updates! ${str} from a new file,..`;
   }
 }

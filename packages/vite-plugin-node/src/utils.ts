@@ -46,6 +46,8 @@ export default function mergeDeep(target: object, source: object) {
 const CacheFileMap: Record<string, number> = {};
 
 export function SwcFileUpdate(FileId: string, appPath: string) {
+  console.clear();
+
   let rootPath = '';
   FileId.split(path.sep).forEach((spath) => {
     appPath.split('/').forEach((apath) => {
