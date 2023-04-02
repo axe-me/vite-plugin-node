@@ -46,7 +46,15 @@ export default function mergeDeep(target: object, source: object) {
 const CacheFileMap: Record<string, number> = {};
 
 export function SwcFileUpdate(FileId: string, appPath: string) {
-  const FileNameIndex = FileId.split(path.sep).indexOf(appPath.split('/')[1]);
+  let rootPath = '';
+  FileId.split(path.sep).forEach((spath) => {
+    appPath.split('/').forEach((apath) => {
+      if (apath === spath && rootPath === '')
+        rootPath = apath;
+    });
+  });
+
+  const FileNameIndex = FileId.split(path.sep).indexOf(rootPath);
   const FilePath = path.join(...FileId.split(path.sep).slice(FileNameIndex));
   if (CacheFileMap[FilePath] === undefined)
     CacheFileMap[FilePath] = 0;
