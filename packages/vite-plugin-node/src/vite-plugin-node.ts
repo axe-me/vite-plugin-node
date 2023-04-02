@@ -6,22 +6,25 @@ import { PLUGIN_NAME } from '.';
 import type { VitePluginNodeConfig } from '.';
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
-  const swcOptions = mergeDeep({
-    module: {
-      type: 'es6',
-    },
-    jsc: {
-      target: 'es2019',
-      parser: {
-        syntax: 'typescript',
-        decorators: true,
+  const swcOptions = mergeDeep(
+    {
+      module: {
+        type: 'es6',
       },
-      transform: {
-        legacyDecorator: true,
-        decoratorMetadata: true,
+      jsc: {
+        target: 'es2019',
+        parser: {
+          syntax: 'typescript',
+          decorators: true,
+        },
+        transform: {
+          legacyDecorator: true,
+          decoratorMetadata: true,
+        },
       },
     },
-  }, cfg.swcOptions ?? {});
+    cfg.swcOptions ?? {},
+  );
 
   const config: VitePluginNodeConfig = {
     appPath: cfg.appPath,
@@ -36,7 +39,9 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     {
       name: PLUGIN_NAME,
       config: () => {
-        const plugincConfig: UserConfig & { VitePluginNodeConfig: VitePluginNodeConfig } = {
+        const plugincConfig: UserConfig & {
+          VitePluginNodeConfig: VitePluginNodeConfig
+        } = {
           build: {
             ssr: config.appPath,
             rollupOptions: {
@@ -49,9 +54,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
           optimizeDeps: {
             // Vite does not work well with optionnal dependencies,
             // mark them as ignored for now
-            exclude: [
-              '@swc/core',
-            ],
+            exclude: ['@swc/core'],
           },
           VitePluginNodeConfig: config,
         };
@@ -69,7 +72,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
 
   if (config.tsCompiler === 'swc') {
     plugins.push({
-      ...RollupPluginSwc(config.swcOptions!),
+      ...RollupPluginSwc(config.swcOptions!, cfg.appPath),
     });
   }
 
