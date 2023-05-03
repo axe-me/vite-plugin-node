@@ -29,6 +29,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     appName: cfg.appName ?? 'app',
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
     exportName: cfg.exportName ?? 'viteNodeApp',
+    loadAtStartup: cfg.loadAtStartup ?? false,
     swcOptions,
   };
 
@@ -62,6 +63,11 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
         return plugincConfig;
       },
       configureServer: async (server) => {
+        if (config.loadAtStartup) {
+          server.httpServer?.on('listening', async () => {
+            await server.ssrLoadModule(config.appPath);
+          });
+        }
         server.middlewares.use(await createMiddleware(server));
       },
     },

@@ -35,6 +35,7 @@ export interface VitePluginNodeConfig {
   exportName?: string
   tsCompiler?: SupportedTSCompiler
   swcOptions?: Options
+  loadAtStartup?: boolean
 }
 
 export declare interface ViteConfig extends UserConfig {
