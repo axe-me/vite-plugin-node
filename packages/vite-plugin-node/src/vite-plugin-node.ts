@@ -39,7 +39,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
       config: () => {
         const plugincConfig: UserConfig & { VitePluginNodeConfig: VitePluginNodeConfig } = {
           build: {
-            ssr: config.appPath,
+            ssr: true,
             rollupOptions: {
               input: config.appPath,
             },
