@@ -1,4 +1,4 @@
-import type http from 'http';
+import type { IncomingMessage, ServerResponse } from 'http';
 import { exit } from 'process';
 import chalk from 'chalk';
 import type {
@@ -78,8 +78,8 @@ export const createMiddleware = async (
   }
 
   return async function (
-    req: http.IncomingMessage,
-    res: http.ServerResponse,
+    req: IncomingMessage,
+    res: ServerResponse,
     next: Connect.NextFunction,
   ): Promise<void> {
     const appModule = await server.ssrLoadModule(config.appPath);
