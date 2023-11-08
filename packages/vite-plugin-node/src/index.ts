@@ -1,4 +1,4 @@
-import type http from 'http';
+import type { IncomingMessage, ServerResponse } from 'http';
 import type { Options } from '@swc/core';
 import type { Connect, UserConfig, ViteDevServer } from 'vite';
 
@@ -17,8 +17,8 @@ export declare type SupportedFrameworks =
 export declare interface RequestAdapterParams<App> {
   app: App
   server: ViteDevServer
-  req: http.IncomingMessage
-  res: http.ServerResponse
+  req: IncomingMessage
+  res: ServerResponse
   next: Connect.NextFunction
 }
 
