@@ -54,6 +54,10 @@
          // the name of named export of you app from the appPath file
          exportName: 'viteNodeApp',
 
+         // Optional, default: false
+         // if you want to init your app on boot, set this to true
+         initAppOnBoot: false,
+
          // Optional, default: 'esbuild'
          // The TypeScript compiler you want to use
          // by default this plugin is using vite default ts compiler which is esbuild

@@ -1,0 +1,19 @@
+{
+  "name": "init-app-on-boot-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "dev-flag": "NODE_OPTIONS='--experimental-fetch' vite",
+    "debug": "vite --debug --inspect-brk",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0",
+    "vite-plugin-node": "workspace:*"
+  }
+}

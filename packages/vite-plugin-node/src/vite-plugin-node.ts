@@ -29,6 +29,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     appName: cfg.appName ?? 'app',
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
     exportName: cfg.exportName ?? 'viteNodeApp',
+    initAppOnBoot: cfg.initAppOnBoot ?? false,
     swcOptions,
   };
 

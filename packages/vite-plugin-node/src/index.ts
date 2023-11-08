@@ -32,6 +32,7 @@ export interface VitePluginNodeConfig {
   appPath: string
   adapter: RequestAdapterOption
   appName?: string
+  initAppOnBoot?: boolean
   exportName?: string
   tsCompiler?: SupportedTSCompiler
   swcOptions?: Options
