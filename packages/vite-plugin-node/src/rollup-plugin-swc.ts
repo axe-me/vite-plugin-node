@@ -1,9 +1,9 @@
 import { createFilter } from '@rollup/pluginutils';
 import type { Compiler, Options } from '@swc/core';
 import type { Plugin } from 'vite';
-import { cleanUrl } from './utils';
+import { SwcFileUpdate, cleanUrl } from './utils';
 
-export function RollupPluginSwc(options: Options): Plugin {
+export function RollupPluginSwc(options: Options, appPath: string): Plugin {
   let swc: Compiler;
   // todo: load swc/tsconfig from config files
   const config: Options = {
@@ -19,7 +19,7 @@ export function RollupPluginSwc(options: Options): Plugin {
       if (filter(id) || filter(cleanUrl(id))) {
         if (!swc)
           swc = await import('@swc/core');
-
+        SwcFileUpdate(id, appPath);
         const result = await swc.transform(code, {
           ...config,
           filename: id,
