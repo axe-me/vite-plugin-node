@@ -84,9 +84,9 @@
        })
      ],
      optimizeDeps: {
-       // Vite does not work well with optionnal dependencies,
+       // Vite does not work well with optional dependencies,
        // you can mark them as ignored for now
-       // eg: for nestjs, exlude these optional dependencies:
+       // eg: for nestjs, exclude these optional dependencies:
        // exclude: [
        //   '@nestjs/microservices',
        //   '@nestjs/websockets',
