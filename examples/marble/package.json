@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "14",
-    "vite": "^4.0.4",
+    "vite": "^5.0.0",
     "vite-plugin-node": "workspace:*"
   }
 }

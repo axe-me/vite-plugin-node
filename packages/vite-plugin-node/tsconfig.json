@@ -5,6 +5,7 @@
     "strict": true,
     "declaration": true,
     "noUnusedLocals": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     // compile away optional-chaining-operator
