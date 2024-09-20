@@ -64,3 +64,6 @@ dist
 /.dccache
 
 /examples/*/dist
+
+# IDEs
+.idea
