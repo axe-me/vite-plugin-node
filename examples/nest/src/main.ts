@@ -1,7 +1,8 @@
+/// <reference types="vite/client" />
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app.module.js';
 
-if (import.meta.env.PROD) {
+if (import.meta.env?.PROD) {
   async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     await app.listen(3000);

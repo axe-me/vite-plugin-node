@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import type { RequestAdapter } from '..';
+import type { RequestAdapter } from '../index.js';
 
 export const FastifyHandler: RequestAdapter<FastifyInstance> = async ({ app, req, res }) => {
   await app.ready();

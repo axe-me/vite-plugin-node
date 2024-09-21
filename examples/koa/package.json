@@ -1,7 +1,7 @@
 {
   "name": "koa-example",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,8 @@
     "koa": "^2.13.3"
   },
   "devDependencies": {
-    "vite": "^4.0.4",
+    "@types/koa": "^2.13.4",
+    "vite": "^5.0.0",
     "vite-plugin-node": "workspace:*"
   }
 }

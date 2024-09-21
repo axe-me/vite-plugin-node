@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Express } from 'express';
 
 const app = express();
 
@@ -19,4 +19,4 @@ if (import.meta.env.PROD) {
 
 console.log('app is loaded');
 
-export const viteNodeApp = app;
+export const viteNodeApp: Express = app;

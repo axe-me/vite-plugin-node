@@ -1,5 +1,5 @@
 import type { INestApplication } from '@nestjs/common';
-import type { RequestAdapter } from '..';
+import type { RequestAdapter } from '../index.js';
 
 let prevApp: INestApplication;
 

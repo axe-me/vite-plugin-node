@@ -1,4 +1,4 @@
-import fastify from 'fastify';
+import { fastify } from 'fastify';
 
 const app = async () => {
   const app = fastify();

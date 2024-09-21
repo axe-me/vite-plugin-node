@@ -1,7 +1,7 @@
 {
   "name": "apollo-example",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -12,11 +12,15 @@
   "dependencies": {
     "@apollo/server": "^4.3.0",
     "cors": "^2.8.5",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "body-parser": "^1.20.3",
+    "express": "^4.17.1"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.5",
     "@types/cors": "^2.8.13",
-    "vite": "^4.0.4",
+    "@types/express": "^4.17.13",
+    "vite": "^5.0.0",
     "vite-plugin-node": "workspace:*"
   }
 }

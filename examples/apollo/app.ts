@@ -3,7 +3,7 @@ import http from 'http';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import express from 'express';
+import express, { type Express } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
@@ -63,4 +63,4 @@ async function bootstrap() {
   return app;
 }
 const app = bootstrap();
-export const viteNodeApp = app;
+export const viteNodeApp: Promise<Express> = app;

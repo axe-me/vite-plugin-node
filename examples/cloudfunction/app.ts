@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Express, type RequestHandler } from 'express';
 
 async function makeApp() {
   const app = express();
@@ -12,8 +12,8 @@ async function makeApp() {
 
 const appPromise = makeApp();
 
-export const viteNodeApp = appPromise;
-export const main = async (req, res) => {
+export const viteNodeApp: Promise<Awaited<Express>> = appPromise;
+export const main: RequestHandler = async (req, res) => {
   const app = await appPromise;
 
   app(req, res);
