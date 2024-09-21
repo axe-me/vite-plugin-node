@@ -39,6 +39,7 @@
       {
         "allowSingleLine": true
       }
-    ]
+    ],
+    "no-undef-init": "off"
   }
 }

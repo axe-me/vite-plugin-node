@@ -13,16 +13,16 @@ import type {
   RequestAdapterOption,
   ViteConfig,
   VitePluginNodeConfig,
-} from '..';
+} from '../index.js';
 import {
   PLUGIN_NAME,
-} from '..';
-import { createDebugger } from '../utils';
-import { ExpressHandler } from './express';
-import { FastifyHandler } from './fastify';
-import { KoaHandler } from './koa';
-import { NestHandler } from './nest';
-import { MarbleHandler } from './marble';
+} from '../index.js';
+import { createDebugger } from '../utils.js';
+import { ExpressHandler } from './express.js';
+import { FastifyHandler } from './fastify.js';
+import { KoaHandler } from './koa.js';
+import { NestHandler } from './nest.js';
+import { MarbleHandler } from './marble.js';
 
 export const debugServer = createDebugger('vite:node-plugin:server');
 
@@ -42,7 +42,7 @@ export const getPluginConfig = async (
   const plugin = server.config.plugins.find(
     p => p.name === PLUGIN_NAME,
   ) as Plugin;
-  let userConfig: UserConfig | null | void;
+  let userConfig: UserConfig | null | void = undefined;
 
   if (typeof plugin.config === 'function')
     userConfig = await plugin.config({}, env);

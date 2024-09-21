@@ -1,7 +1,6 @@
-import * as T from 'fp-ts/lib/Task';
-import { pipe } from 'fp-ts/lib/function';
+import * as T from 'fp-ts/Task';
+import { pipe } from 'fp-ts/function';
 import { createServer, httpListener } from '@marblejs/http';
-import { isTestEnv, getPortEnv } from '@marblejs/core/dist/+internal/utils';
 import { logger$ } from '@marblejs/middleware-logger';
 import { bodyParser$ } from '@marblejs/middleware-body';
 import { r } from '@marblejs/http';

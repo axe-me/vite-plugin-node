@@ -1,23 +1,34 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "strict": true,
-    "declaration": true,
-    "noUnusedLocals": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    // compile away optional-chaining-operator
-    // node support table: https://node.green/#ES2020-features-optional-chaining-operator-----
-    "target": "esnext",
-    "module": "esnext",
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "module": "NodeNext",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "lib": [
-      "ESNext"
+      "es2022"
     ],
-    "sourceMap": true
+    "paths": {
+      "vite-plugin-node": [
+        "./packages/vite-plugin-node/src/index.ts"
+      ]
+    },
+    "noEmit": true
   },
-  "exclude": [
-    "dist",
-    "node_modules"
+  "include": [
+    "./examples/**/*",
+    "./packages/**/*"
   ]
 }

@@ -18,7 +18,11 @@
     "node",
     "hmr"
   ],
-  "main": "dist/index.js",
+  "type": "module",
+  "module": "dist/index.js",
+  "exports": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist",
     "readme.md"
@@ -32,7 +36,7 @@
     "prebuild": "rimraf dist && npm run lint && cp ../../README.md ./readme.md"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.1.1",
+    "@rollup/pluginutils": "^5.1.0",
     "chalk": "^4.1.2",
     "debug": "^4.3.2"
   },

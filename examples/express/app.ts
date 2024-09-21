@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Express } from 'express';
 
 const app = express();
 
@@ -17,4 +17,4 @@ if (import.meta.env.PROD) {
   console.log('listening on http://localhost:3000/');
 }
 
-export const viteNodeApp = app;
+export const viteNodeApp: Express = app;

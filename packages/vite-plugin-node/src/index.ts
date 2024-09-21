@@ -2,8 +2,8 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import type { Options } from '@swc/core';
 import type { Connect, UserConfig, ViteDevServer } from 'vite';
 
-export { RollupPluginSwc } from './rollup-plugin-swc';
-export { VitePluginNode } from './vite-plugin-node';
+export { RollupPluginSwc } from './rollup-plugin-swc.js';
+export { VitePluginNode } from './vite-plugin-node.js';
 
 export const PLUGIN_NAME = 'vite-plugin-node';
 
