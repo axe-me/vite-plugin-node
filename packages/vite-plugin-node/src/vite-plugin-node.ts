@@ -30,6 +30,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
     exportName: cfg.exportName ?? 'viteNodeApp',
     initAppOnBoot: cfg.initAppOnBoot ?? false,
+    outputFormat: cfg.outputFormat ?? 'cjs',
     swcOptions,
   };
 
@@ -42,12 +43,16 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
             ssr: config.appPath,
             rollupOptions: {
               input: config.appPath,
+              output: {
+                format: config.outputFormat,
+              },
             },
           },
           server: {
             hmr: false,
           },
           optimizeDeps: {
+            noDiscovery: true,
             // Vite does not work well with optionnal dependencies,
             // mark them as ignored for now
             exclude: [

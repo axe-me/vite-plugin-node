@@ -28,6 +28,8 @@ export declare type RequestAdapterOption = SupportedFrameworks | RequestAdapter;
 
 export declare type SupportedTSCompiler = 'esbuild' | 'swc';
 
+export type InternalModuleFormat = 'amd' | 'cjs' | 'es' | 'iife' | 'system' | 'umd';
+export type ModuleFormat = InternalModuleFormat | 'commonjs' | 'esm' | 'module' | 'systemjs';
 export interface VitePluginNodeConfig {
   appPath: string
   adapter: RequestAdapterOption
@@ -36,6 +38,7 @@ export interface VitePluginNodeConfig {
   exportName?: string
   tsCompiler?: SupportedTSCompiler
   swcOptions?: Options
+  outputFormat?: ModuleFormat
 }
 
 export declare interface ViteConfig extends UserConfig {

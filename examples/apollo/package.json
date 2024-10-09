@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
-    "vite": "^4.0.4",
+    "vite": "^5.0.0",
     "vite-plugin-node": "workspace:*"
   }
 }

@@ -2,7 +2,7 @@ import http from 'http';
 
 const requestListener: http.RequestListener = (req, res) => {
   res.writeHead(200);
-  res.end('raw node server!~');
+  res.end('raw node server!~!');
 };
 
 if (import.meta.env.PROD) {

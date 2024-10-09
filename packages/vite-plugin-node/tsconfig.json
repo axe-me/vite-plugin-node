@@ -1,6 +1,7 @@
 {
   "rootDir": "src",
   "compilerOptions": {
+    "skipLibCheck": true,
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,

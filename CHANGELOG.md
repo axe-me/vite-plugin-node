@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.0
+- update vite to 5.x
+
 ## 3.1.0
 - add `initAppOnBoot` option, when set to true, the app will be initialized on vite server boot.
 

@@ -42,7 +42,7 @@ export const getPluginConfig = async (
   const plugin = server.config.plugins.find(
     p => p.name === PLUGIN_NAME,
   ) as Plugin;
-  let userConfig: UserConfig | null | void;
+  let userConfig: UserConfig | null | void = null;
 
   if (typeof plugin.config === 'function')
     userConfig = await plugin.config({}, env);
