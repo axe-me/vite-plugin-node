@@ -1,16 +1,25 @@
 import type { INestApplication } from '@nestjs/common';
+import { RawServerDefault } from 'fastify';
+let prevApp: NestFastifyApplication<RawServerDefault>;
 import type { RequestAdapter } from '..';
 
-let prevApp: INestApplication;
+let prevApp: NestFastifyApplication<RawServerDefault>;
+let nestInitInProgress: Promise<void> | undefined;
 
 export const NestHandler: RequestAdapter<INestApplication> = async ({ app, req, res }) => {
-  // @ts-expect-error nest app typing error
+  // If not initialized, ensure that we only initialize once
   if (!app.isInitialized) {
-    if (prevApp)
-      await prevApp.close();
-
-    await app.init();
-    prevApp = app;
+    if (!nestInitInProgress) {
+      nestInitInProgress = (async () => {
+        if (prevApp) {
+          await prevApp.close();
+        }
+        await app.init();
+        prevApp = app;
+        nestInitInProgress = undefined;
+      })();
+    }
+    await nestInitInProgress;
   }
 
   const instance = app.getHttpAdapter().getInstance();
