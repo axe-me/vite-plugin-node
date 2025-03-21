@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@swc/core": "^1.2.155",
-    "vite": "^5.0.0",
+    "vite": "catalog:",
     "vite-plugin-node": "workspace:*"
   }
 }

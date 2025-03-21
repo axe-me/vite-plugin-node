@@ -9,7 +9,7 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
+    "vite": "catalog:",
     "vite-plugin-node": "workspace:*"
   }
 }

@@ -1,5 +1,11 @@
 packages:
-  - 'examples/**'
-  - 'packages/**'
-  # exclude packages that are inside test directories
+  - examples/**
+  - packages/**
   - '!**/test/**'
+onlyBuiltDependencies:
+  - '@apollo/protobufjs'
+  - '@nestjs/core'
+  - '@swc/core'
+  - esbuild
+catalog:
+  vite: ^6.2.2

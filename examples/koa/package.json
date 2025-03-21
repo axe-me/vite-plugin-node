@@ -11,7 +11,7 @@
     "koa": "^2.13.3"
   },
   "devDependencies": {
-    "vite": "^5.0.0",
+    "vite": "catalog:",
     "vite-plugin-node": "workspace:*"
   }
 }
