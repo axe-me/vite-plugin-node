@@ -31,6 +31,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     exportName: cfg.exportName ?? 'viteNodeApp',
     initAppOnBoot: cfg.initAppOnBoot ?? false,
     outputFormat: cfg.outputFormat ?? 'cjs',
+    rollupOptions: cfg.rollupOptions ?? {},
     swcOptions,
   };
 
@@ -46,6 +47,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
               output: {
                 format: config.outputFormat,
               },
+              ...config.rollupOptions,
             },
           },
           server: {
