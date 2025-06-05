@@ -35,6 +35,7 @@ export interface VitePluginNodeConfig {
   adapter: RequestAdapterOption
   appName?: string
   initAppOnBoot?: boolean
+  watchFileChanges?: boolean
   exportName?: string
   tsCompiler?: SupportedTSCompiler
   swcOptions?: Options

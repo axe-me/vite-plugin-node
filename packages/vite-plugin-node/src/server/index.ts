@@ -8,6 +8,7 @@ import type {
   UserConfig,
   ViteDevServer,
 } from 'vite';
+import debounce from 'debounce';
 import type {
   RequestAdapter,
   RequestAdapterOption,
@@ -96,6 +97,14 @@ export const createMiddleware = async (
     server.httpServer!.once('listening', async () => {
       await _loadApp(config);
     });
+  }
+
+  if (config.watchFileChanges) {
+    const debounceDelayMs = 500;
+
+    server.watcher.on('change', debounce(async () => {
+      await _loadApp(config);
+    }, debounceDelayMs));
   }
 
   return async function (
