@@ -24,7 +24,7 @@
     "typescript": "^4.3.2"
   },
   "devDependencies": {
-    "@types/node": "^18.19.55",
+    "@types/node": "^20.19.0",
     "vite": "catalog:",
     "vite-plugin-node": "workspace:*"
   }

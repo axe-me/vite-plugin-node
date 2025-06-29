@@ -1,5 +1,8 @@
 # Changelog
 
+## 6.0.0
+- update vite to 7.x.x
+
 ## 5.0.0
 - update vite to 6.x.x
 

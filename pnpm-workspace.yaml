@@ -8,4 +8,4 @@ onlyBuiltDependencies:
   - '@swc/core'
   - esbuild
 catalog:
-  vite: ^6.2.2
+  vite: ^7.0.0
