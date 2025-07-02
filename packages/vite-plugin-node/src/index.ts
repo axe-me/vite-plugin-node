@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'http';
 import type { Options } from '@swc/core';
-import type { Connect, UserConfig, ViteDevServer } from 'vite';
+import type { BuildOptions, Connect, UserConfig, ViteDevServer } from 'vite';
 
 export { RollupPluginSwc } from './rollup-plugin-swc';
 export { VitePluginNode } from './vite-plugin-node';
@@ -40,6 +40,7 @@ export interface VitePluginNodeConfig {
   tsCompiler?: SupportedTSCompiler
   swcOptions?: Options
   outputFormat?: ModuleFormat
+  rollupOptions?: BuildOptions["rollupOptions"]
 }
 
 export declare interface ViteConfig extends UserConfig {
