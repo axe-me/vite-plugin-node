@@ -1,9 +1,9 @@
-import type { Plugin, UserConfig } from 'vite';
+import type { Plugin } from 'vite';
 import { RollupPluginSwc } from './rollup-plugin-swc';
 import { createMiddleware } from './server';
 import mergeDeep from './utils';
 import { PLUGIN_NAME } from '.';
-import type { VitePluginNodeConfig } from '.';
+import type { ViteConfig, VitePluginNodeConfig } from '.';
 
 export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
   const swcOptions = mergeDeep({
@@ -38,7 +38,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     {
       name: PLUGIN_NAME,
       config: () => {
-        const plugincConfig: UserConfig & { VitePluginNodeConfig: VitePluginNodeConfig } = {
+        const plugincConfig: ViteConfig = {
           build: {
             ssr: config.appPath,
             rollupOptions: {
@@ -68,7 +68,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
         return plugincConfig;
       },
       configureServer: async (server) => {
-        server.middlewares.use(await createMiddleware(server));
+        server.middlewares.use(await createMiddleware(server, config));
       },
     },
   ];
