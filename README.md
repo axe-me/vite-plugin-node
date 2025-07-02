@@ -58,6 +58,10 @@
          // if you want to init your app on boot, set this to true
          initAppOnBoot: false,
 
+         // Optional, default: false
+         // if you want to restart your app on file changes, set this to true
+         watchFileChanges: false,
+
          // Optional, default: 'esbuild'
          // The TypeScript compiler you want to use
          // by default this plugin is using vite default ts compiler which is esbuild
