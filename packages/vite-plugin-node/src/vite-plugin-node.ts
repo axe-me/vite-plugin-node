@@ -30,7 +30,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     tsCompiler: cfg.tsCompiler ?? 'esbuild',
     exportName: cfg.exportName ?? 'viteNodeApp',
     initAppOnBoot: cfg.initAppOnBoot ?? false,
-    watchFileChanges: cfg.watchFileChanges ?? false,
+    reloadAppOnFileChange: cfg.reloadAppOnFileChange ?? false,
     outputFormat: cfg.outputFormat ?? 'cjs',
     swcOptions,
   };
@@ -54,7 +54,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
           },
           optimizeDeps: {
             noDiscovery: true,
-            // Vite does not work well with optionnal dependencies,
+            // Vite does not work well with optional dependencies,
             // mark them as ignored for now
             exclude: [
               '@swc/core',

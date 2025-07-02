@@ -71,7 +71,7 @@ export const createMiddleware = async (
     });
   }
 
-  if (config.watchFileChanges) {
+  if (config.reloadAppOnFileChange) {
     const debounceDelayMs = 500;
 
     server.watcher.on('change', debounce(async () => {

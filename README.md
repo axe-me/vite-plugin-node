@@ -28,6 +28,15 @@
    npm install vite vite-plugin-node -D
    ```
 
+   Vite version and package version match table:
+    | Vite         | Plugin         |
+    |--------------|----------------|
+    | 7.x.x        | 7.x.x          |
+    | 6.x.x        | 5.x.x          |
+    | 5.x.x        | 4.x.x          |
+    | 4.x.x        | 3.x.x          |
+    | 3.x.x        | <=2.x.x        |
+
 2. Create a `vite.config.ts` file in your project root to config vite to actually use this plugin:
 
    ```ts
@@ -59,8 +68,8 @@
          initAppOnBoot: false,
 
          // Optional, default: false
-         // if you want to restart your app on file changes, set this to true
-         watchFileChanges: false,
+         // if you want to reload your app on file changes, set this to true, rebounce delay is 500ms
+         reloadAppOnFileChange: false,
 
          // Optional, default: 'esbuild'
          // The TypeScript compiler you want to use

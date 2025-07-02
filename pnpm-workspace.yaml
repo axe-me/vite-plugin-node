@@ -9,3 +9,5 @@ onlyBuiltDependencies:
   - esbuild
 catalog:
   vite: ^7.0.0
+  '@types/node': ^20.0.0
+  '@nestjs/common': ^11.0.0

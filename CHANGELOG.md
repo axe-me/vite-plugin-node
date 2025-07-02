@@ -1,7 +1,8 @@
 # Changelog
 
-## 6.0.0
-- update vite to 7.x.x
+## 7.0.0
+- support vite 7.x, in order to align with vite major version, the major version of this plugin is bumped to 7.x as well. rip 6
+- add `reloadAppOnFileChange` option, when set to true, the app will be reloaded on file changes.
 
 ## 5.0.0
 - update vite to 6.x.x
