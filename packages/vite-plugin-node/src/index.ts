@@ -26,10 +26,10 @@ export declare type RequestAdapter<App = any> = (params: RequestAdapterParams<Ap
 
 export declare type RequestAdapterOption = SupportedFrameworks | RequestAdapter;
 
-export declare type SupportedTSCompiler = 'esbuild' | 'swc';
+export declare type SupportedTSCompiler = 'vite' | 'swc';
 
-export type InternalModuleFormat = 'amd' | 'cjs' | 'es' | 'iife' | 'system' | 'umd';
-export type ModuleFormat = InternalModuleFormat | 'commonjs' | 'esm' | 'module' | 'systemjs';
+export type InternalModuleFormat = 'cjs' | 'es' | 'iife' | 'umd';
+export type ModuleFormat = InternalModuleFormat | 'commonjs' | 'esm' | 'module';
 export interface VitePluginNodeConfig {
   appPath: string
   adapter: RequestAdapterOption

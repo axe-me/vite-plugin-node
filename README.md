@@ -16,7 +16,7 @@
 - Node server HMR! (hot module replacement)
 - Support Express, Fastify, Koa and Nest out of the box
 - Support Custom Request Adapter
-- You can choose to use `esbuild` or `swc` to compile your typescript files
+- You can choose to use Vite default compiler (`vite`, powered by Oxc) or `swc` to compile your TypeScript files
 
 ## Get started
 
@@ -31,6 +31,7 @@
    Vite version and package version match table:
     | Vite         | Plugin         |
     |--------------|----------------|
+    | 8.x.x        | 8.x.x          |
     | 7.x.x        | 7.x.x          |
     | 6.x.x        | 5.x.x          |
     | 5.x.x        | 4.x.x          |
@@ -71,13 +72,12 @@
          // if you want to reload your app on file changes, set this to true, rebounce delay is 500ms
          reloadAppOnFileChange: false,
 
-         // Optional, default: 'esbuild'
-         // The TypeScript compiler you want to use
-         // by default this plugin is using vite default ts compiler which is esbuild
-         // 'swc' compiler is supported to use as well for frameworks
-         // like Nestjs (esbuild dont support 'emitDecoratorMetadata' yet)
+         // Optional, default: 'vite'
+         // The TypeScript compiler mode you want to use
+         // 'vite' uses Vite's default transformer pipeline (Oxc)
+         // 'swc' is supported as an opt-in path (e.g. decorator metadata workflows)
          // you need to INSTALL `@swc/core` as dev dependency if you want to use swc
-         tsCompiler: 'esbuild',
+         tsCompiler: 'vite',
 
          // Optional, default: {
          // jsc: {
@@ -179,7 +179,7 @@ While frontend development tooling is evolving rapidly in recent years, backend 
 
 Vite by design has a middleware mode, which allows us to use it programmatically inside other modules. It's originally made for SSR, so that for each request, vite can load the renderer and render the latest changes you made to your app (<https://vitejs.dev/guide/ssr.html>). This plugin leverages this feature to load and execute your server app entry.
 
-You may ask, isn't super slow, since it re-compiles/reloads the entire app? The answer is NO, because vite is smart. It has a builtin module graph as a cache layer, the graph is built up the first time your app loads. After that, when you update a file, vite will only invalidate that one and its parent modules, so that for next request, only those invalidated modules need to be re-compiled which is super fast thanks to esbuild or swc.
+You may ask, isn't super slow, since it re-compiles/reloads the entire app? The answer is NO, because vite is smart. It has a builtin module graph as a cache layer, the graph is built up the first time your app loads. After that, when you update a file, vite will only invalidate that one and its parent modules, so that for next request, only those invalidated modules need to be re-compiled which is super fast thanks to Vite's default transformer pipeline (Oxc) or swc.
 
 ## To-Do
 
