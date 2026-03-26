@@ -46,17 +46,25 @@ export const createMiddleware = async (
   const requestHandler = getRequestHandler(config.adapter);
 
   async function _loadApp(config: VitePluginNodeConfig) {
-    const appModule = await server.ssrLoadModule(config.appPath);
-    let app = appModule[config.exportName!];
-    if (!app) {
-      logger.error(
-        `Failed to find a named export ${config.exportName} from ${config.appPath}`,
-      );
-      process.exit(1);
-    } else {
-      // some app may be created with a function returning a promise
-      app = await app;
-      return app;
+    try {
+      const appModule = await server.ssrLoadModule(config.appPath);
+      let app = appModule[config.exportName!];
+      if (!app) {
+        logger.error(
+          `Failed to find a named export ${config.exportName} from ${config.appPath}`,
+        );
+        process.exit(1);
+      } else {
+        // some app may be created with a function returning a promise
+        app = await app;
+        return app;
+      }
+    } catch(e) {
+      if (config.reloadAppOnFileChange) {
+        logger.error("Loading app has failed. Waiting for an update.")
+      } else {
+        throw e
+      }
     }
   }
 
