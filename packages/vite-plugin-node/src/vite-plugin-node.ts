@@ -27,7 +27,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     appPath: cfg.appPath,
     adapter: cfg.adapter,
     appName: cfg.appName ?? 'app',
-    tsCompiler: cfg.tsCompiler ?? 'esbuild',
+    tsCompiler: cfg.tsCompiler ?? 'vite',
     exportName: cfg.exportName ?? 'viteNodeApp',
     initAppOnBoot: cfg.initAppOnBoot ?? false,
     reloadAppOnFileChange: cfg.reloadAppOnFileChange ?? false,
@@ -42,7 +42,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
         const plugincConfig: ViteConfig = {
           build: {
             ssr: config.appPath,
-            rollupOptions: {
+            rolldownOptions: {
               input: config.appPath,
               output: {
                 format: config.outputFormat,
@@ -64,7 +64,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
         };
 
         if (config.tsCompiler === 'swc')
-          plugincConfig.esbuild = false;
+          plugincConfig.oxc = false;
 
         return plugincConfig;
       },

@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.0.0
+### ⚠️ **Breaking Changes!** ⚠️
+- support vite 8.x, in order to align with vite major version, the major version of this plugin is bumped to 8.x.
+- `tsCompiler` now defaults to `'vite'` (Vite's Oxc pipeline). `'esbuild'` mode has been removed.
+- `outputFormat` no longer supports `amd`, `system`, and `systemjs` (not supported by Rolldown in Vite 8).
+### other changes
+- migrate internal build config from `build.rollupOptions` to `build.rolldownOptions`.
+- when `tsCompiler` is set to `'swc'`, the plugin now disables Vite's Oxc transform with `oxc: false`.
+
 ## 7.0.0
 - support vite 7.x, in order to align with vite major version, the major version of this plugin is bumped to 7.x as well. rip 6
 - add `reloadAppOnFileChange` option, when set to true, the app will be reloaded on file changes.
