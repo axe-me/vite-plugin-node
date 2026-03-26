@@ -32,6 +32,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
     initAppOnBoot: cfg.initAppOnBoot ?? false,
     reloadAppOnFileChange: cfg.reloadAppOnFileChange ?? false,
     outputFormat: cfg.outputFormat ?? 'cjs',
+    rollupOptions: cfg.rollupOptions ?? {},
     swcOptions,
   };
 
@@ -47,6 +48,7 @@ export function VitePluginNode(cfg: VitePluginNodeConfig): Plugin[] {
               output: {
                 format: config.outputFormat,
               },
+              ...config.rollupOptions,
             },
           },
           server: {
