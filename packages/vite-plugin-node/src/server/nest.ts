@@ -2,15 +2,25 @@ import type { INestApplication } from '@nestjs/common';
 import type { RequestAdapter } from '..';
 
 let prevApp: INestApplication;
+let initializing = false;
 
 export const NestHandler: RequestAdapter<INestApplication> = async ({ app, req, res }) => {
   // @ts-expect-error nest app typing error
   if (!app.isInitialized) {
-    if (prevApp)
-      await prevApp.close();
+    while (initializing) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    initializing = true;
 
-    await app.init();
-    prevApp = app;
+    try {
+      if (prevApp)
+        await prevApp.close();
+
+      await app.init();
+      prevApp = app;
+    } finally {
+      initializing = false;
+    }
   }
 
   const instance = app.getHttpAdapter().getInstance();
